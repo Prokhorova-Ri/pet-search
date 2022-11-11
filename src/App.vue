@@ -1,9 +1,10 @@
 <script setup>
+import VHeader from  "@/components/VHeader.vue"
 </script>
 
 <template>
-  <div>Привет клоун</div>
+<VHeader />
 </template>
 
-<style scoped>
+<style lang="scss" scoped>
 </style>
