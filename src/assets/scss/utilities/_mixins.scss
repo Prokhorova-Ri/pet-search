@@ -1,0 +1,23 @@
+/* EXAMPLE:
+@mixin flexContainer($direction, $justify, $align) {
+  display: flex;
+  flex-direction: $direction;
+  justify-content: $justify;
+  align-items: $align;
+}
+.Main-container {
+  @include flexContainer(column, center, center);
+}
+*/
+
+@mixin flexContainer($direction, $justify, $align) {
+  display: flex;
+  flex-direction: $direction;
+  justify-content: $justify;
+  align-items: $align;
+}
+
+@mixin gridContainer($columns) {
+  display: grid;
+  grid-template-columns: $columns;
+}
