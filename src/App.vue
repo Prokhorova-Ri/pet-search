@@ -4,10 +4,6 @@ import VHeader from  "@/components/VHeader.vue"
 
 <template>
 <VHeader />
-<div class="test">
-  <p class="test-testovich">Картина: Vue зажал Ри:((((</p>
-  <img src="https://i.ytimg.com/vi/sPmAJsqnqYQ/maxresdefault.jpg" alt="Ри и Vue">
-</div>
 </template>
 
 <style lang="scss" scoped>
