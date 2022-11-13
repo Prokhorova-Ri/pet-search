@@ -5,33 +5,46 @@ import VButton from '@/components/VButton.vue';
 <template>
   <header class="header">
     <div class="header-logo">
-      <img class="header-logo__img" src="/logo.png" alt="logo" />
+      <img class="header-img" src="/logo.png" alt="logo" />
     </div>
-    <div class="header-title">
-      <h3>Поиск животных</h3>
+    <div class="header-right">
+      <input class="header-input" type="text" placeholder="Номер объявления"/>
+      <router-link class="header-request">ВСЕ ОБЬЯВЛЕНИЯ</router-link>
+      <router-link class="header-request2">ПОДАТЬ ОБЬЯВЛЕНИЕ</router-link>
+      <router-link class="header-registration">ВХОД</router-link>
     </div>
-    <div class="header-auth">
-      <VButton>Регистрация</VButton>
-      <VButton>Вход</VButton>
-    </div>
-
   </header>
 </template>
 
 <style lang="scss" scoped>
 .header {
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  height: 60px;
+  justify-content: space-between;
+  height: 80px;
   padding: 20px;
   margin: 0 20px;
   border-bottom: 1px solid #000000;
-  &-logo {
-    &__img {
-      max-width: 40px;
-      margin-right: 20px;
+  &-request, &-request2, &-registration {
+    &:hover {
+      text-decoration: underline;
     }
+  }
+  &-input {
+    margin-right: 40px;
+    padding: 10px;
+    border-radius: 25px;
+  }
+  &-right {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+    justify-items: end;
+    align-items: center;
+  }
+  &-img {
+    max-width: 40px;
+    margin-right: 20px;
   }
 }
 </style>
