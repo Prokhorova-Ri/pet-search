@@ -1,5 +1,8 @@
-
 @import url("https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@300;400&display=swap");
+/*Подключаем BootStrap Container*/
+/* EXAMPLE: class="container" or class="mobile-container"*/
+@import "scss/grid/_container";
+@import "scss/grid/_mobile-container";
 
 * {
   margin: 0;

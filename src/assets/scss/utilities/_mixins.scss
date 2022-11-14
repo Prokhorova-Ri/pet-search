@@ -21,3 +21,10 @@
   display: grid;
   grid-template-columns: $columns;
 }
+
+@mixin button($padding, $background, $border: 1px solid transparent, $radius: 0) {
+  padding: $padding;
+  background-color: $background;
+  border: $border;
+  border-radius: $radius;
+}
