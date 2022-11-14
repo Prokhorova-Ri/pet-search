@@ -1,21 +1,12 @@
 <script setup>
 import VHeader from  "@/components/VHeader.vue"
+import ListCards from "@/components/Page/Main/ListCards.vue";
 </script>
 
 <template>
-<VHeader />
+  <VHeader />
+  <div class="container">
+    <ListCards />
+  </div>
 </template>
 
-<style lang="scss" scoped>
-// TEST CONNECT SCSS
-@import '@/assets/scss/utilities/mixins';
-
-.test {
-  margin: 100px 0;
-  // TEST WORKING MIXINS
-  @include flexContainer(column, center,  center);
-  &-testovich {
-    margin: 0 0 10px 0;
-  }
-}
-</style>
