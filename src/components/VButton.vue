@@ -15,6 +15,7 @@
   border-radius: 10px;
   background-size: 200%;
   transition: .5s;
+  cursor: pointer;
   &:hover {
     background-position: right;
   }
