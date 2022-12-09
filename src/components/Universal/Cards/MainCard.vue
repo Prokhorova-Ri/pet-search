@@ -36,8 +36,11 @@ export default {
 @import "./src/assets/scss/utilities/variables";
 // ВРЕМЕННЫЕ СТИЛИ, ДЛЯ ПОНИМАНИЯ
 .main-card {
+  @include fontFamily($font-family-manrope-500, 16px);
+  background: $fff;
   min-height: 200px;
   border: 1px solid;
+  border-radius: 20px;
   padding: 20px;
   &-slider {
     @include flexContainer(row, center, center);
@@ -53,6 +56,7 @@ export default {
       border: 1px solid $grey;
       padding: 2px 10px;
       border-radius: 7px;
+      background: #fcf8ed;
       @include fontFamily($font-family-manrope-500, 16px);
     }
   }

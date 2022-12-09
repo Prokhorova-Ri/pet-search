@@ -6,6 +6,10 @@
       <input class="form-auth__input" type="text" placeholder="Пароль" />
       <button :class="button.className">{{ button.name }}</button>
     </form>
+    <form class="form-auth__regist">
+      <h5>Зарегистрировать аккаунт</h5>
+      <button :class="button.className">{{ button.name }}</button>
+    </form>
   </div>
 </template>
 
@@ -16,7 +20,7 @@ export default {
   name: "Auth",
   setup () {
     const button = ref();
-    button.value = getButton('enter');
+    button.value = getButton('enter', 'reg');
     return {
       button
     }
@@ -37,7 +41,7 @@ export default {
   border: 2px solid $grey;
   border-radius: 20px;
   &__title {
-    margin-bottom: 30px;
+    margin-bottom: 20px;
   }
   &__input {
   margin-top: 20px;
@@ -48,7 +52,8 @@ export default {
   color: #b6b6b6;
   font-size: 14px;
   }
-  &__enter {
+  &__regist{
+    margin-top: 20px;
   }
 }
 

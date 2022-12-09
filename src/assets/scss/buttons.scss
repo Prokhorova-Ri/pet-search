@@ -8,6 +8,9 @@
     font-weight: 600;
   }
   &-reg {
+    @include button(10px 10px, $fff, 1px solid $grey, 8px);
+    width: 60%;
+    font-weight: 600;
   }
   &-enter {
     @include button(20px 20px, $fff, 1px solid $grey, 8px);
@@ -19,5 +22,6 @@
     @include button(10px 10px, $fff, 1px solid $grey, 8px);
     width: 100%;
     font-weight: 600;
+    background: #fcf8ed;
   }
 }

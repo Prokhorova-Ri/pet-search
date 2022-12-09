@@ -4,10 +4,9 @@
       <div class="header-wrapper">
         <img class="header-img" src="/src/assets/image/logo.png" alt="logo" />
         <div class="header-right">
-          <input class="header-input" type="text" placeholder="Номер объявления" />
-          <router-link to="/" class="header-request">ВСЕ ОБЬЯВЛЕНИЯ</router-link>
-          <router-link to="/" class="header-request2">ПОДАТЬ ОБЬЯВЛЕНИЕ</router-link>
-          <button @click="changeModalAutherizaytion" :class="button.className" class="header-registration">{{ button.name }}</button>
+          <button @click="changeModalAutherizaytion" :class="button.className" class="header-registration">
+            {{ button.name }}
+          </button>
         </div>
       </div>
     </div>
@@ -24,7 +23,7 @@
 import WrapperModal from "@/components/Universal/WrapperModal.vue";
 import AuthForm from "@/components/Universal/Forms/Auth.vue";
 import { ref } from "vue";
-import { getButton } from "@/utilites/dicts/buttons.js"
+import { getButton } from "@/utilites/dicts/buttons.js";
 export default {
   name: "VHeader",
   components: { WrapperModal, AuthForm },
@@ -34,7 +33,7 @@ export default {
       status ? (activeModal.value = true) : (activeModal.value = status);
     };
     const button = ref();
-    button.value = getButton('auth');
+    button.value = getButton("auth");
 
     return { activeModal, changeModalAutherizaytion, button };
   },
@@ -44,7 +43,9 @@ export default {
 <style lang="scss" scoped>
 @import "../assets/scss/utilities/mixins";
 @import "../assets/scss/utilities/variables";
+
 .header {
+  @include fontFamily($font-family-manrope-500, 16px);
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -69,12 +70,8 @@ export default {
     border: 1px solid $grey;
     border-radius: 25px;
   }
-  &-right {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 10px;
-    justify-items: end;
-    align-items: center;
+  &-registration {
+    width: 100%;
   }
   &-img {
     max-width: 40px;
