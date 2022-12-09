@@ -53,6 +53,7 @@ export default {
   max-height: 450px;
   height: 90vh;
   background-color: white;
+  border-radius: 20px;
   //  Не удалять, нужно что бы центр сделать
   position: absolute;
   top: 50%;

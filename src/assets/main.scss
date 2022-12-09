@@ -3,6 +3,7 @@
 /* EXAMPLE: class="container" or class="mobile-container"*/
 @import "scss/grid/_container";
 @import "scss/grid/_mobile-container";
+@import "scss/buttons";
 
 * {
   margin: 0;
@@ -12,7 +13,7 @@
 }
 
 body {
-  background: #f5ebdc;
+  background: #fcf8ed;
   font-family: "Roboto Condensed", sans-serif;
 }
 

@@ -1,19 +1,25 @@
 <template>
   <div class="form-auth">
+    <h2 class="form-auth__title">Авторизация</h2>
     <form class="form-auth__layout">
-      <h2>Авторизация</h2>
       <input class="form-auth__input" type="text" placeholder="Email" />
       <input class="form-auth__input" type="text" placeholder="Пароль" />
-      <button  class="form-auth__enter">ВХОД</button>
+      <button :class="button.className">{{ button.name }}</button>
     </form>
   </div>
 </template>
 
 <script>
+import { ref } from "vue";
+import { getButton } from "@/utilites/dicts/buttons.js"
 export default {
   name: "Auth",
   setup () {
-    return {}
+    const button = ref();
+    button.value = getButton('enter');
+    return {
+      button
+    }
   }
 }
 </script>
@@ -23,26 +29,26 @@ export default {
 @import './src/assets/scss/utilities/variables';
 
 .form-auth {
-  background: #b6b6b6;
+  background: #fcf8ed;
   text-align: center;
-  margin: 0 auto;
-  padding: 20px;
-  &__layout {
+  padding: 40px 20px;
+  height: 100%;
+  box-shadow: 7px 7px 10px $grey;
+  border: 2px solid $grey;
+  border-radius: 20px;
+  &__title {
+    margin-bottom: 30px;
   }
   &__input {
-  margin: 10px;
+  margin-top: 20px;
   width: 60%;
-  border: 15px;
+  border: 1px solid $grey;
+  border-radius: 10px;
   padding: 15px;
   color: #b6b6b6;
   font-size: 14px;
-  cursor: pointer;
   }
   &__enter {
-    @include button(20px 20px, $fff, 1px solid red, 8px);
-    width: 60%;
-    font-weight: 600;
-    margin-top: 20px;
   }
 }
 
