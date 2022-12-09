@@ -1,7 +1,7 @@
 <template>
   <section class="main-cards">
     <div class="main-cards-wrapper">
-      <MainCard v-for="(card, index) in 20" :key="index" />
+      <MainCard v-for="(index) in 20" :key="index" />
     </div>
     <button class="main-cards-more">Загрузить еще</button>
   </section>
@@ -16,7 +16,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import '@/assets/scss/utilities/_mixins.scss';
+@import './src/assets/scss/utilities/mixins';
 
 .main-cards {
   &-wrapper {

@@ -1,17 +1,16 @@
 <template>
-  <VHeader />
-  <div class="container">
-    <ListCards />
+  <div id="app">
+    <VHeader />
+    <router-view />
   </div>
 </template>
 
 
 <script>
 import VHeader from  "@/components/VHeader.vue"
-import ListCards from "@/components/Page/Main/ListCards.vue";
 export default {
   name: 'App',
-  components: { VHeader, ListCards }
+  components: { VHeader }
 }
 
 </script>

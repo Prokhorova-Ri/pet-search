@@ -1,14 +1,15 @@
 import { createRouter, createWebHistory } from "vue-router";
-import VButton from "@/components/VButton.vue";  
+
+import Main from "./pages/Main.vue";
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
-     {
-      path: "/button",
-      name: "Button",
-      component: VButton,
-    },  
+      {
+        path: "/",
+        name: "Main",
+        component: Main,
+      }
   ],
 });
 
