@@ -1,60 +1,45 @@
-<script setup>
-import { ref } from "vue";
-import VButton from "@/components/VButton.vue";
-
-const testModal = ref(false);
-
-const openModal = () => {
-  testModal.value = true;
-};
-
-
-</script>
-
 <template>
   <header class="header">
     <div class="container">
       <div class="header-wrapper">
-        <img class="header-img" src="/logo.png" alt="logo" />
+        <img class="header-img" src="/src/assets/image/logo.png" alt="logo" />
         <div class="header-right">
-          <input class="header-input" type="text" placeholder="Номер объявления" />
-          <router-link class="header-request">ВСЕ ОБЬЯВЛЕНИЯ</router-link>
-          <router-link class="header-request2">ПОДАТЬ ОБЬЯВЛЕНИЕ</router-link>
-          <button @click="openModal" class="header-registration">ВХОД</button>
+          <input class="header-input" type="text" placeholder="Номер объявления"/>
+<!--          <router-link class="header-request">ВСЕ ОБЬЯВЛЕНИЯ</router-link>-->
+<!--          <router-link class="header-request2">ПОДАТЬ ОБЬЯВЛЕНИЕ</router-link>-->
+          <a class="header-request">ВСЕ ОБЬЯВЛЕНИЯ</a>
+          <a class="header-request2">ПОДАТЬ ОБЬЯВЛЕНИЕ</a>
+          <button
+              @click="changeModalAutherizaytion"
+              class="header-registration">ВХОД</button>
         </div>
       </div>
     </div>
-    <!--    TODO ПЕРЕНЕСТИ ГЛОБАЛЬНО ПОСЛЕ ПОДКЛЮЧЕНИЯ PINIA, НАПИСАТЬ УНИВЕРСАЛЬНУЮ ОБЕРТКУ ПОД ФОРМУ-->
-    <vue-final-modal v-model="testModal" name="modal-auth">
-      <div class="modal">
-        <form class="modal-form">
-          <section class="modal-form__item">
-            <h2 class="modal-form__title">ВАШ АККАУНТ</h2>
-            <VButton :class="{ active: isActive }">Вход</VButton>
-          </section>
-          <section class="modal-form__item">
-            <h2 class="modal-form__title">РЕГИСТРАЦИЯ АККАУНТА</h2>
-            <VButton :class="{ active: isActive }">Регистрация</VButton>
-          </section>
-
-          <div class="form-box"></div>
-        </form>
-      </div>
-    </vue-final-modal>
-    <!--    <div class="header-logo">-->
-    <!--      <img class="header-img" src="/logo.png" alt="logo" />-->
-    <!--    </div>-->
-    <!--    <div class="header-right">-->
-    <!--      <input class="header-input" type="text" placeholder="Номер объявления"/>-->
-    <!--      <router-link class="header-request">ВСЕ ОБЬЯВЛЕНИЯ</router-link>-->
-    <!--      <router-link class="header-request2">ПОДАТЬ ОБЬЯВЛЕНИЕ</router-link>-->
-    <!--      <router-link class="header-registration">ВХОД</router-link>-->
-    <!--    </div>-->
+    <WrapperModal :active="activeModal" @closeModal="changeModalAutherizaytion"/>
+<!--    TODO ПЕРЕНЕСТИ ГЛОБАЛЬНО ПОСЛЕ ПОДКЛЮЧЕНИЯ PINIA, НАПИСАТЬ УНИВЕРСАЛЬНУЮ ОБЕРТКУ ПОД ФОРМУ-->
   </header>
 </template>
 
+<script>
+import WrapperModal from "@/components/Universal/Forms/WrapperModal.vue";
+import { ref } from 'vue'
+export default {
+  name: "VHeader",
+  components: { WrapperModal },
+  setup () {
+    const activeModal = ref(false)
+
+    const changeModalAutherizaytion = (status) => {
+      status ? activeModal.value = true : activeModal.value = status
+    }
+
+    return { activeModal, changeModalAutherizaytion }
+  }
+}
+</script>
+
 <style lang="scss" scoped>
-@import "@/assets/scss/utilities/_mixins.scss";
+@import '../assets/scss/utilities/_mixins.scss';
 .header {
   //display: flex;
   //align-items: center;
@@ -64,16 +49,14 @@ const openModal = () => {
   //margin: 0 20px;
   margin: 0 0 40px 0;
   border-bottom: 1px solid #000000;
-  &-request,
-  &-request2,
-  &-registration {
+  &-request, &-request2, &-registration {
     cursor: pointer;
     &:hover {
       text-decoration: underline;
     }
   }
   &-wrapper {
-    @include flexContainer(row, space-between, center);
+    @include flexContainer(row, space-between, center)
   }
   &-input {
     margin-right: 40px;
@@ -91,44 +74,5 @@ const openModal = () => {
     max-width: 40px;
     margin-right: 20px;
   }
-}
-.modal {
-  &-form {
-    display: flex;
-    align-items: center;
-    width: 500px;
-    min-height: 300px;
-    text-align: center;
-    padding: 20px;
-    background-color: #f5ebdc;
-    //  Не удалять, нужно что бы центр сделать
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    //  Не удалять, нужно что бы центр сделать
-    &__item {
-      width: 50%;
-    }
-    &__title {
-      font-size: 16px;
-      margin-bottom: 20px;
-    }
-  }
-}
-
-.form-box {
-  height: 100%;
-  width: 50%;
-  background-color: #f7f2ea;
-  box-shadow: 0 5px 45px rgba(0, 0, 0, 0.25);
-  position: absolute;
-  top: 0;
-  left: 0;
-  z-index: 10;
-  transition: 0.5s;
-}
-.form-box.active {
-  left: 50%;
 }
 </style>

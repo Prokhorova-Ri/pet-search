@@ -1,8 +1,3 @@
-<script setup>
-import VHeader from  "@/components/VHeader.vue"
-import ListCards from "@/components/Page/Main/ListCards.vue";
-</script>
-
 <template>
   <VHeader />
   <div class="container">
@@ -10,3 +5,13 @@ import ListCards from "@/components/Page/Main/ListCards.vue";
   </div>
 </template>
 
+
+<script>
+import VHeader from  "@/components/VHeader.vue"
+import ListCards from "@/components/Page/Main/ListCards.vue";
+export default {
+  name: 'App',
+  components: { VHeader, ListCards }
+}
+
+</script>
