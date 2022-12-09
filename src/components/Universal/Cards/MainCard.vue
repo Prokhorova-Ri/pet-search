@@ -8,30 +8,27 @@
     <div class="main-card-text">
       Кобель такса кролик длинношёрстный рыжий кличка Ян с ошейником. В руки не даётся чужим. Полтора года.
     </div>
-    <button class="main-card-btn" :class="button.className">{{ button.name }}</button>
+    <Button type="map"/>
   </div>
 </template>
 
 <script>
 import { reactive } from "vue";
-import { ref } from "vue";
-import { getButton } from "@/utilites/dicts/buttons.js";
+import Button from "../../../components/Universal/Button.vue";
 export default {
   name: "MainCard",
+  components: { Button },
   setup() {
     const testObject = reactive([
       { id: 0, tag: "Кошка" },
       { id: 1, tag: "Казань" },
     ]);
-    const button = ref();
-    button.value = getButton("map");
-    return { testObject, button };
+    return { testObject };
   },
 };
 </script>
 
 <style lang="scss" scoped>
-@import "../../../assets/scss/utilities/mixins";
 @import "./src/assets/scss/utilities/mixins";
 @import "./src/assets/scss/utilities/variables";
 // ВРЕМЕННЫЕ СТИЛИ, ДЛЯ ПОНИМАНИЯ
