@@ -53,6 +53,7 @@ export default {
       border: 1px solid $grey;
       padding: 2px 10px;
       border-radius: 7px;
+      @include fontFamily($font-family-manrope-500, 16px);
     }
   }
   &-name {
