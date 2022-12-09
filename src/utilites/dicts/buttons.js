@@ -9,7 +9,7 @@
 
 const buttons = {
     auth: {
-        name: 'Вход',
+        name: 'Авторизация',
         code: 'auth',
         className: 'btn-auth'
     },
@@ -17,6 +17,16 @@ const buttons = {
         name: 'Регистрация',
         code: 'reg',
         className: 'btn-reg'
+    },
+    enter: {
+        name: 'Вход',
+        code: 'enter',
+        className: 'btn-enter'
+    },
+    map: {
+        name: 'Показать на карте',
+        code: 'map',
+        className: 'btn-map'
     }
 }
 

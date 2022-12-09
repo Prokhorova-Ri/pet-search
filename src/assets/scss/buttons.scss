@@ -1,6 +1,23 @@
+@import './utilities/mixins.scss';
+@import './utilities/variables';
+
 .btn {
   &-auth {
+    @include button(10px 10px, $fff, 1px solid $grey, 8px);
+    width: 60%;
+    font-weight: 600;
   }
   &-reg {
+  }
+  &-enter {
+    @include button(20px 20px, $fff, 1px solid $grey, 8px);
+    width: 60%;
+    font-weight: 600;
+    margin-top: 20px;
+  }
+  &-map {
+    @include button(10px 10px, $fff, 1px solid $grey, 8px);
+    width: 100%;
+    font-weight: 600;
   }
 }
