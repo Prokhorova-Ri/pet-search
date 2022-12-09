@@ -1,4 +1,7 @@
 /* EXAMPLE:
+
+@import './src/assets/scss/utilities/mixins';
+
 @mixin flexContainer($direction, $justify, $align) {
   display: flex;
   flex-direction: $direction;
@@ -28,3 +31,12 @@
   border: $border;
   border-radius: $radius;
 }
+
+//@mixin fontFamily($font: $font-family-manrope-main, $size, $color: $black, $height: 120%, $space: normal) {
+//  font-family: $font;
+//  font-size: $size;
+//  color: $color;
+//  line-height: $height;
+//  letter-spacing: $space;
+//}
+

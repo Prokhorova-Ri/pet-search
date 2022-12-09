@@ -15,20 +15,27 @@
         </div>
       </div>
     </div>
-    <WrapperModal :active="activeModal" @closeModal="changeModalAutherizaytion"/>
-<!--    TODO ПЕРЕНЕСТИ ГЛОБАЛЬНО ПОСЛЕ ПОДКЛЮЧЕНИЯ PINIA, НАПИСАТЬ УНИВЕРСАЛЬНУЮ ОБЕРТКУ ПОД ФОРМУ-->
+    <!--    TODO ПЕРЕНЕСТИ ГЛОБАЛЬНО ПОСЛЕ ПОДКЛЮЧЕНИЯ PINIA-->
+    <WrapperModal
+        :active="activeModal"
+        @closeModal="changeModalAutherizaytion">
+        <template #form>
+          <AuthForm />
+        </template>
+    </WrapperModal>
   </header>
 </template>
 
 <script>
-import WrapperModal from "@/components/Universal/Forms/WrapperModal.vue";
+import WrapperModal from "@/components/Universal/WrapperModal.vue";
+import AuthForm from "@/components/Universal/Forms/Auth.vue";
 import { ref } from 'vue'
 export default {
   name: "VHeader",
-  components: { WrapperModal },
+  components: { WrapperModal, AuthForm },
   setup () {
-    const activeModal = ref(false)
 
+    const activeModal = ref(false)
     const changeModalAutherizaytion = (status) => {
       status ? activeModal.value = true : activeModal.value = status
     }
@@ -39,7 +46,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import '../assets/scss/utilities/_mixins.scss';
+@import '../assets/scss/utilities/mixins';
 .header {
   //display: flex;
   //align-items: center;

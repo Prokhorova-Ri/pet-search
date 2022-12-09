@@ -4,7 +4,7 @@
       TODO SWIPER SLIDER
     </div>
     <div class="main-card-tags">
-      <p class="main-card-tags-tag" v-for="(tag, index) in testObject" :key="tag.id">{{tag.tag}}</p>
+      <p class="main-card-tags-tag" v-for="(tag) in testObject" :key="tag.id">{{tag.tag}}</p>
     </div>
     <div class="main-card-name">
       Пропала собака, Москва
@@ -31,7 +31,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import '../../../assets/scss/utilities/_mixins.scss';
+@import '../../../assets/scss/utilities/mixins';
 // ВРЕМЕННЫЕ СТИЛИ, ДЛЯ ПОНИМАНИЯ
 .main-card {
   min-height: 200px;
