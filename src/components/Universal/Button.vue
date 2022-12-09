@@ -1,5 +1,11 @@
 <template>
-  <button :class="button.className">{{ button.name }}</button>
+  <button 
+    :type="select"
+    :class="button.className"
+    @click="clickButton(button.code)"
+    >
+    {{ button.name }}
+  </button>
 </template>
 
 <script>
@@ -12,12 +18,22 @@ export default {
       type: String,
       required: true,
       default: ''
+    },
+    select: {
+      type: String,
+      default: 'button'
     }
   },
-  setup (props) {
+  emits: ['clickOnButton'],
+  setup (props, context) {
     const button = ref();
     button.value = getButton(props?.type);
-    return { button }
+
+    const clickButton = (code) => {
+      context.emit('clickOnButton', code)
+    }
+
+    return { button, clickButton }
   }
 }
 </script>
