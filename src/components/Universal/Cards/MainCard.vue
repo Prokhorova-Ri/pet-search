@@ -52,13 +52,12 @@ export default {
 // ВРЕМЕННЫЕ СТИЛИ, ДЛЯ ПОНИМАНИЯ
 .main-card {
   @include fontFamily($font-family-manrope-500, 16px);
-  background: $fff;
+  background: $dark-gray;
+  color: $fff;
   min-height: 200px;
-  border: 1px solid;
-  border-radius: 20px;
-  padding: 20px;
+  padding: 5px;
   &-slider {
-    margin: 0 0 30px 0;
+    margin: 0 0 15px 0;
   }
   &-tags {
     @include flexContainer(row, flex-start, center);
@@ -66,10 +65,8 @@ export default {
     gap: 5px;
     margin: 0 0 10px 0;
     &-tag {
-      border: 1px solid $grey;
-      padding: 2px 10px;
-      border-radius: 7px;
-      background: #fcf8ed;
+      padding: 6px 10px;
+      background: #d1d1d1;
       @include fontFamily($font-family-manrope-500, 16px);
     }
   }
@@ -78,9 +75,9 @@ export default {
     font-size: 20px;
   }
   &-text {
-    font-size: 16px;
+    font-size: 14px;
     margin: 0 0 20px 0;
-    color: #423d33;
+    color: #e2e2e2;
   }
   &-map {
     width: 100%;

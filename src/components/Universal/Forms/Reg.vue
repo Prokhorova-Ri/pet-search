@@ -44,12 +44,11 @@ export default {
 @import "./src/assets/scss/utilities/mixins";
 @import "./src/assets/scss/utilities/variables";
 .form-reg {
-  background: #fcf8ed;
+  background: #3d3d3d;
   text-align: center;
   padding: 40px 20px;
   height: 100%;
   box-shadow: 7px 7px 10px $grey;
-  border: 2px solid $grey;
   border-radius: 20px;
   &__title {
     margin-bottom: 30px;
@@ -57,8 +56,6 @@ export default {
   &__input {
   margin-top: 20px;
   width: 60%;
-  border: 1px solid $grey;
-  border-radius: 10px;
   padding: 15px;
   color: #b6b6b6;
   font-size: 14px;

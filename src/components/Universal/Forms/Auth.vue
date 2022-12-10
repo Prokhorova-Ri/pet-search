@@ -62,28 +62,23 @@ export default {
 
 .form-auth {
   @include flexContainer(column, space-between, center);
-  background: #fcf8ed;
+  background: #3d3d3d;
   text-align: center;
   padding: 40px 20px;
   height: 100%;
   box-shadow: 7px 7px 10px $grey;
-  border: 2px solid $grey;
-  border-radius: 20px;
   &__title {
     margin-bottom: 30px;
   }
   &__input {
     margin: 0 0 10px 0;
     width: 60%;
-    border: 1px solid $grey;
-    border-radius: 10px;
     padding: 10px;
     color: #b6b6b6;
     font-size: 14px;
   }
   &__registration {
     width: 60%;
-    border-top: 1px solid $grey;
     padding: 33px 0 0 0;
   }
 }
