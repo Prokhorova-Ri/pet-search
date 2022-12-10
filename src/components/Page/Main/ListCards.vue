@@ -1,7 +1,7 @@
 <template>
   <section class="main-cards">
     <div class="main-cards-wrapper">
-      <MainCard v-for="(index) in 20" :key="index" />
+      <MainCard v-for="(index) in 20" :key="index" :index="index" />
     </div>
     <button class="main-cards-more">Загрузить еще</button>
   </section>
@@ -20,7 +20,7 @@ export default {
 
 .main-cards {
   &-wrapper {
-    @include gridContainer(repeat(auto-fit, minmax(250px, 1fr)));
+    @include gridContainer(repeat(auto-fit, minmax(400px, 1fr)));
     gap: 20px;
   }
   &-more {
