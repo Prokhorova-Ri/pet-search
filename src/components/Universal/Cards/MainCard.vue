@@ -11,6 +11,14 @@
       Кобель такса кролик длинношёрстный рыжий кличка Ян с ошейником. В руки не даётся чужим. Полтора года.
     </div>
     <Button type="map"/>
+    <div class="main-card-map">
+      <Map
+          border-radius="20px"
+          :coordinates="[59.892315, 30.470127]"
+          :zoom="120"
+          :id="`main-${index}`"
+      />
+    </div>
   </div>
 </template>
 
@@ -18,9 +26,16 @@
 import { reactive } from "vue";
 import Button from "../../../components/Universal/Button.vue";
 import Slider from '@/components/Slider/index.vue'
+import Map from '../../../components/Map/index.vue'
 export default {
   name: "MainCard",
-  components: { Button, Slider },
+  components: { Button, Slider, Map },
+  props: {
+    index: {
+      type: Number,
+      default: 0
+    }
+  },
   setup() {
     const testObject = reactive([
       { id: 0, tag: "Кошка" },
@@ -66,6 +81,11 @@ export default {
     font-size: 16px;
     margin: 0 0 20px 0;
     color: #423d33;
+  }
+  &-map {
+    width: 100%;
+    height: 300px;
+    margin: 20px 0 0 0;
   }
 }
 </style>
