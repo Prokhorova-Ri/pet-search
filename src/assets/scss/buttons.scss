@@ -25,3 +25,16 @@
     background: #fcf8ed;
   }
 }
+
+.btn-tab {
+  &-auth {
+    @include button(10px 10px, transparent, none, 8px);
+    @include fontFamily($font-family-manrope-600, 16px);
+    width: 60%;
+  }
+  &-reg {
+    @include button(10px 10px, $fff, 1px solid $grey, 8px);
+    width: 60%;
+    font-weight: 600;
+  }
+}

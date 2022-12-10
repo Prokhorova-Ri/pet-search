@@ -8,7 +8,7 @@
 import ListCards from "@/components/Page/Main/ListCards.vue";
 
 export default {
-  name: "main",
+  name: "home",
   components: { ListCards }
 }
 </script>

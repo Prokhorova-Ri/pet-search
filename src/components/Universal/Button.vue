@@ -9,7 +9,7 @@
 </template>
 
 <script>
-import { ref } from "vue";
+import { computed } from "vue";
 import { getButton } from "../../utilites/dicts/buttons";
 export default {
   name: "Buttons",
@@ -26,14 +26,15 @@ export default {
   },
   emits: ['clickOnButton'],
   setup (props, context) {
-    const button = ref();
-    button.value = getButton(props?.type);
-
+    
     const clickButton = (code) => {
       context.emit('clickOnButton', code)
     }
 
-    return { button, clickButton }
+    return { 
+      button: computed(() => getButton(props?.type)), 
+      clickButton 
+    }
   }
 }
 </script>

@@ -29,6 +29,16 @@ const buttons = {
         name: 'Показать на карте',
         code: 'map',
         className: 'btn-map'
+    },
+    reg_tab: {
+        name: 'Регистрация',
+        code: 'reg_tab',
+        className: 'btn-tab-reg'
+    },
+    auth_tab: {
+        name: 'Авторизация',
+        code: 'auth_tab',
+        className: 'btn-tab-auth'
     }
 }
 

@@ -2,46 +2,56 @@
   <div class="form-auth">
     <div>
       <h2 class="form-auth__title">Авторизация</h2>
-      <form 
-        @submit.prevent="getParamsFormAuth"
-        class="form-auth__layout">
+      <form @submit.prevent="getParamsFormAuth" class="form-auth__layout">
         <input v-model="authValues.email" class="form-auth__input" type="text" placeholder="Email" />
         <input v-model="authValues.password" class="form-auth__input" type="text" placeholder="Пароль" />
         <Button type="auth" select="submit" />
       </form>
     </div>
     <div class="form-auth__registration">
-      <h5 class="form-auth__reg">Зарегистрировать аккаунт</h5>
-      <Button type="reg" @clickOnButton="changeForm"/>
+      <h5 class="form-auth__reg">{{ isAuthForm ? "Авторизация" : "Зарегистрировать аккаунт" }}</h5>
+      <Button :type="isAuthForm ? 'auth_tab' : 'reg_tab'" @clickOnButton="changeForm" />
     </div>
   </div>
 </template>
 
 <script>
-import { reactive } from '@vue/reactivity';
+import { computed, ref } from "vue";
+import { reactive } from "@vue/reactivity";
 import Button from "../../../components/Universal/Button.vue";
 export default {
   name: "Auth",
   components: {
     Button,
   },
-  setup() {
-    
+  emits: ["getButtonCode"],
+  setup(props, context) {
+    const typeForm = ref();
+
     const authValues = reactive({
-      email: '',
-      password: ''
-    })
+      email: "",
+      password: "",
+    });
 
     const changeForm = (code) => {
-      console.log('changeForm', code)
-    }
+      typeForm.value = code;
+      context.emit("getButtonCode", code);
+    };
 
     const getParamsFormAuth = () => {
-      console.warn('getParamsFormAuth', authValues)
-      //  TODO API 
-    }
+      console.warn("getParamsFormAuth", authValues);
+      //  TODO API
+    };
 
-    return { changeForm, authValues, getParamsFormAuth }
+    return {
+      isAuthForm: computed(() => {
+        return typeForm.value === "reg_tab" ? true : false;
+      }),
+      changeForm,
+      typeForm,
+      authValues,
+      getParamsFormAuth,
+    };
   },
 };
 </script>
@@ -67,7 +77,7 @@ export default {
     width: 60%;
     border: 1px solid $grey;
     border-radius: 10px;
-    padding: 10px ;
+    padding: 10px;
     color: #b6b6b6;
     font-size: 14px;
   }

@@ -4,25 +4,45 @@
     <form class="form-reg__layout">
       <input class="form-reg__input" type="text" placeholder="Email" />
       <input class="form-reg__input" type="text" placeholder="Пароль" />
-      <button :class="button.className">{{ button.name }}</button>
+       <input class="form-reg__input" type="text" placeholder="Пароль" />
+      <Button :type="isAuthForm ? 'auth_tab' : 'reg_tab'" @clickOnButton="changeForm" />
     </form>
+    <div class="form-auth__registration">
+      <h5 class="form-auth__reg">{{!isAuthForm ? "Авторизация ++" : "Зарегистрировать аккаунт" }}</h5>
+      <Button :type="!isAuthForm ? 'auth_tab' : 'reg_tab'" @clickOnButton="changeForm" />
+    </div>
   </div>
 </template>
 
 <script>
-import { ref } from "vue";
-import { getButton } from "@/utilites/dicts/buttons.js";
+import { computed, ref } from "vue";
+import Button from "../../../components/Universal/Button.vue";
 export default {
   name: "Reg",
-  setup() {
-    const button = ref();
-    button.value = getButton("reg");
-    return { button };
+  components: { Button },
+  emits: ["getButtonCode"],
+  setup(props, context) {
+    const typeForm = ref();
+
+    const changeForm = (code) => {
+      typeForm.value = code;
+      context.emit("getButtonCode", code);
+    };
+
+    return {
+      isAuthForm: computed(() => {
+        return typeForm.value === "reg_tab" ? true : false;
+      }),
+      changeForm,
+    };
   },
 };
 </script>
 
 <style lang="scss" scoped>
+
+@import "./src/assets/scss/utilities/mixins";
+@import "./src/assets/scss/utilities/variables";
 .form-reg {
   background: #fcf8ed;
   text-align: center;

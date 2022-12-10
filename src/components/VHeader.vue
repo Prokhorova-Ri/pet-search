@@ -13,7 +13,8 @@
     <!--    TODO ПЕРЕНЕСТИ ГЛОБАЛЬНО ПОСЛЕ ПОДКЛЮЧЕНИЯ PINIA-->
     <WrapperModal :active="activeModal" @closeModal="changeModalAutherizaytion">
       <template #form>
-        <AuthForm />
+        <AuthForm v-if="!isAuthForm" @getButtonCode="changeTypeForm" />
+        <RegForm v-else  @getButtonCode="changeTypeForm" />
       </template>
     </WrapperModal>
   </header>
@@ -22,12 +23,14 @@
 <script>
 import WrapperModal from "@/components/Universal/WrapperModal.vue";
 import AuthForm from "@/components/Universal/Forms/Auth.vue";
-import { ref } from "vue";
+import RegForm from "@/components/Universal/Forms/Reg.vue";
+import { computed, ref } from "vue";
 import { getButton } from "@/utilites/dicts/buttons.js";
 export default {
   name: "VHeader",
-  components: { WrapperModal, AuthForm },
+  components: { WrapperModal, AuthForm, RegForm },
   setup() {
+    const buttonCode = ref();
     const activeModal = ref(false);
     const changeModalAutherizaytion = (status) => {
       status ? (activeModal.value = true) : (activeModal.value = status);
@@ -35,7 +38,20 @@ export default {
     const button = ref();
     button.value = getButton("auth");
 
-    return { activeModal, changeModalAutherizaytion, button };
+    const changeTypeForm = (code) => {
+      console.log('changeTypeForm', code);
+      buttonCode.value = code;
+    }
+
+    return {
+      isAuthForm: computed(() => {
+        return buttonCode.value === "reg_tab" ? true : false;
+      }),
+      activeModal, 
+      changeModalAutherizaytion, 
+      button, 
+      changeTypeForm 
+    };
   },
 };
 </script>
