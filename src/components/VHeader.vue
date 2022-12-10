@@ -3,6 +3,7 @@
     <div class="container">
       <div class="header-wrapper">
         <img class="header-img" src="/src/assets/image/logo.png" alt="logo" />
+        <h4>ПОИСК ПРОПАВШИХ ЖИВОТНЫХ</h4>
         <div class="header-right">
           <button @click="changeModalAutherizaytion" :class="button.className" class="header-registration">
             {{ button.name }}
@@ -61,10 +62,10 @@ export default {
 @import "../assets/scss/utilities/variables";
 
 .header {
-  @include fontFamily($font-family-manrope-500, 16px);
+  @include fontFamily($font-family-manrope-500, 16px);  
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: space-between; 
   height: 80px;
   padding: 20px 0;
   margin: 0 0 40px 0;
