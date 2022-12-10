@@ -2,7 +2,9 @@
 * EXAMPLE:
 * IN SETUP:
 * import { getButton } from "../utilites/dicts/buttons.js"
-* const button = getButton('auth')
+* const button = ref({})
+* button.value = getButton('auth')
+* return { button }
 * IN TEMPLATE:
 * <button :class="button.className">{{ button.name }}</button>
 */

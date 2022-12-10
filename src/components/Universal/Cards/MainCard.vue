@@ -1,6 +1,8 @@
 <template>
   <div class="main-card">
-    <div class="main-card-slider">TODO SWIPER SLIDER</div>
+    <div class="main-card-slider">
+      <Slider />
+    </div>
     <div class="main-card-tags">
       <p class="main-card-tags-tag" v-for="tag in testObject" :key="tag.id">{{ tag.tag }}</p>
     </div>
@@ -15,9 +17,10 @@
 <script>
 import { reactive } from "vue";
 import Button from "../../../components/Universal/Button.vue";
+import Slider from '@/components/Slider/index.vue'
 export default {
   name: "MainCard",
-  components: { Button },
+  components: { Button, Slider },
   setup() {
     const testObject = reactive([
       { id: 0, tag: "Кошка" },
@@ -40,9 +43,7 @@ export default {
   border-radius: 20px;
   padding: 20px;
   &-slider {
-    @include flexContainer(row, center, center);
-    height: 100px;
-    width: 100%;
+    margin: 0 0 30px 0;
   }
   &-tags {
     @include flexContainer(row, flex-start, center);
