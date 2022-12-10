@@ -1,14 +1,21 @@
 import { createRouter, createWebHistory } from "vue-router";
 
-import Main from "./pages/Main.vue";
+import Home from "./pages/Home.vue";
+import dev_ilya from "./pages/dev_ilya.vue";
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
       {
         path: "/",
-        name: "Main",
-        component: Main,
+        name: "Home",
+        component: Home,
+      },
+      //Временная страница для разработки компонентов
+      {
+          path: "/dev_ilya",
+          name: "dev_ilya",
+          component: dev_ilya,
       }
   ],
 });
