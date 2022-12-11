@@ -3,9 +3,14 @@
 
 .btn {
   &-auth {
-    @include button(10px 10px, $dark-gray);
-    width: 60%;
-    font-weight: 600;
+    @include button(0 0, transparent, none, 8px);
+    @include fontFamily($font-family-manrope-400, 16px);
+    margin-left: 5px;
+    color: $ginger;
+    text-transform: uppercase;
+    &:hover{
+      text-decoration: underline;
+    }
   }
   &-reg {
     @include button(10px 10px, transparent, none, 8px);
@@ -19,7 +24,7 @@
     margin-top: 20px;
   }
   &-map {
-    @include button(10px 10px, $fff);
+    @include button(10px 10px, $fff, 2px solid $border, 10px);
     width: 100%;
     @include fontFamily($font-family-manrope-600, 16px, $black);
     color: $black;
@@ -42,13 +47,14 @@
 
 .btn-tab {
   &-auth {
-    @include button(10px 10px, transparent, none, 8px);
+    @include button(20px 20px, $ginger, none, 40px);
     @include fontFamily($font-family-manrope-600, 16px);
-    width: 60%;
+    width: 80%;
   }
   &-reg {
-    @include button(10px 10px, $dark-gray);
-    width: 60%;
+    @include button(20px 20px, $ginger, none, 40px);
+    width: 100%;
     font-weight: 600;
+    margin: 20px 0 0 0;
   }
 }

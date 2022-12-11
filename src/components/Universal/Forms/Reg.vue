@@ -1,15 +1,15 @@
 <template>
   <div class="form-reg">
-    <h2 class="form-reg__title">Регистрация</h2>
+    <h3 class="form-reg__title">Зарегистрироваться</h3>
     <form class="form-reg__layout">
       <input class="form-reg__input" type="text" placeholder="Email" />
       <input class="form-reg__input" type="text" placeholder="Пароль" />
-       <input class="form-reg__input" type="text" placeholder="Пароль" />
-      <Button :type="isAuthForm ? 'auth_tab' : 'reg_tab'" @clickOnButton="changeForm" />
+       <input class="form-reg__input" type="text" placeholder="Повторите пароль" />
+      <Button :type="isAuthForm ? 'auth' : 'reg'" @clickOnButton="changeForm" />
     </form>
     <div class="form-auth__registration">
-      <h5 class="form-auth__reg">{{!isAuthForm ? "Авторизация ++" : "Зарегистрировать аккаунт" }}</h5>
-      <Button :type="!isAuthForm ? 'auth_tab' : 'reg_tab'" @clickOnButton="changeForm" />
+      <h5 class="form-auth__reg">{{!isAuthForm ? "Авторизация" : "Зарегистрировать аккаунт" }}</h5>
+      <Button :type="!isAuthForm ? 'auth' : 'reg'" @clickOnButton="changeForm" />
     </div>
   </div>
 </template>
@@ -31,7 +31,7 @@ export default {
 
     return {
       isAuthForm: computed(() => {
-        return typeForm.value === "reg_tab" ? true : false;
+        return typeForm.value === "reg" ? true : false;
       }),
       changeForm,
     };
@@ -44,20 +44,25 @@ export default {
 @import "./src/assets/scss/utilities/mixins";
 @import "./src/assets/scss/utilities/variables";
 .form-reg {
-  background: #3d3d3d;
+  background: $fff;
   text-align: center;
   padding: 40px 20px;
   height: 100%;
   box-shadow: 7px 7px 10px $grey;
   border-radius: 20px;
   &__title {
-    margin-bottom: 30px;
+    margin-bottom: 20px;
   }
   &__input {
   margin-top: 20px;
-  width: 60%;
-  padding: 15px;
+  width: 80%;
+  padding: 20px;
   color: #b6b6b6;
   font-size: 14px;
+    border: 1px solid $border;
+    border-radius: 15px;
+  }
+  &__registration {
+    padding: 33px 0 0 0;
   }
 }</style>

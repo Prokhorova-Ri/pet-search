@@ -4,13 +4,13 @@
       <h2 class="form-auth__title">Авторизация</h2>
       <form @submit.prevent="getParamsFormAuth" class="form-auth__layout">
         <input v-model="authValues.email" class="form-auth__input" type="text" placeholder="Email" />
-        <input v-model="authValues.password" class="form-auth__input" type="text" placeholder="Пароль" />
-        <Button type="auth" select="submit" />
+        <input v-model="authValues.password" class="form-auth__input" type="password" placeholder="Пароль" />
+        <Button type="auth_tab" select="submit" />
       </form>
     </div>
     <div class="form-auth__registration">
-      <h5 class="form-auth__reg">{{ isAuthForm ? "Авторизация" : "Зарегистрировать аккаунт" }}</h5>
-      <Button :type="isAuthForm ? 'auth_tab' : 'reg_tab'" @clickOnButton="changeForm" />
+      <h4 class="form-auth__reg">{{ isAuthForm ? "ЕСТЬ АККАУНТ?" : "НЕТ АККАУНТА?" }}</h4>
+      <Button :type="isAuthForm ? 'auth' : 'reg'" @clickOnButton="changeForm" />
     </div>
   </div>
 </template>
@@ -45,7 +45,7 @@ export default {
 
     return {
       isAuthForm: computed(() => {
-        return typeForm.value === "reg_tab" ? true : false;
+        return typeForm.value === "reg" ? true : false;
       }),
       changeForm,
       typeForm,
@@ -62,23 +62,31 @@ export default {
 
 .form-auth {
   @include flexContainer(column, space-between, center);
-  background: #3d3d3d;
+  @include fontFamily($font-family-manrope-400, 16px);
+  background: $fff;
   text-align: center;
-  padding: 40px 20px;
+  padding: 60px 10px;
   height: 100%;
+  border-radius: 45px;
   box-shadow: 7px 7px 10px $grey;
   &__title {
     margin-bottom: 30px;
   }
   &__input {
-    margin: 0 0 10px 0;
-    width: 60%;
-    padding: 10px;
+    border: 1px solid $border;
+    border-radius: 15px;
+    margin: 0 0 15px 0;
+    width: 80%;
+    padding: 15px;
     color: #b6b6b6;
-    font-size: 14px;
+    font-size: 16px;
   }
   &__registration {
-    width: 60%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    width: 70%;
     padding: 33px 0 0 0;
   }
 }

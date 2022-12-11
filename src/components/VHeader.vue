@@ -62,7 +62,7 @@ export default {
 @import "../assets/scss/utilities/variables";
 
 .header {
-  @include fontFamily($font-family-manrope-500, 16px);  
+  @include fontFamily($font-family-manrope-400, 16px);
   display: flex;
   align-items: center;
   justify-content: space-between; 

@@ -53,12 +53,13 @@ export default {
   max-height: 450px;
   height: 90vh;
   background-color: white;
-  border-radius: 20px;
+  border-radius: 45px;
   //  Не удалять, нужно что бы центр сделать
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+  z-index: 1010!important;
   //  Не удалять, нужно что бы центр сделать
 }
 </style>
