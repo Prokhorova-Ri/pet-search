@@ -9,14 +9,12 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  color: #e2e2e2;
+  color: #1B1918;
   border: 0 none;
 }
 
 body {
-  background: #3d3d3d;
-  ;
-  font-family: "Roboto Condensed", sans-serif;
+  background: #fcf5e3;
 }
 
 main {
@@ -26,4 +24,8 @@ main {
 
 button, a {
   cursor: pointer;
+}
+
+.leaflet-top, .leaflet-bottom {
+  z-index: 900!important;
 }

@@ -16,25 +16,17 @@
       class="mySwiper"
     >
       <swiper-slide>
-        <img
-          class="swiper-image"
-          src="https://sun9-34.userapi.com/impg/1Ewmg_Cqkuy17uRwIAEe2s-3NvUcT6yEXvCaKg/2ZGdAF-rpRA.jpg?size=1200x1600&quality=95&sign=c19f77bd6ccdac0635ca00f178c064f4&type=album"
-          alt=""
-        />
-      </swiper-slide>
-      <swiper-slide>
-        <img
-          class="swiper-image"
-          src="https://sun9-74.userapi.com/impg/DudLP-BnM5EHJqbdT4BVWLKgsyiR8VNfn3oLbg/6H9SYgPBWFM.jpg?size=1440x1920&quality=95&sign=9405545b2c1e7e5f50fd8fdab701b3a0&type=album"
-          alt=""
-        />
-      </swiper-slide>
-      <swiper-slide>
-        <img
-          class="swiper-image"
-          src="https://sun9-7.userapi.com/impg/xlmoR4867Nq4umGWvZSoCEwrtwje08-i-pvZeg/dq3CsOH9WRk.jpg?size=1200x1600&quality=95&sign=6f89c0b3860889c4e52b909ce3ca501f&type=album"
-          alt=""
-        />
+        <div
+            class="swiper-image"
+            style="background-image: url('https://cs8.pikabu.ru/post_img/big/2016/03/06/9/1457279582133433203.jpg')"
+        >
+
+        </div>
+<!--        <img-->
+<!--          class="swiper-image"-->
+<!--          src=""-->
+<!--          alt=""-->
+<!--        />-->
       </swiper-slide>
     </swiper>
   </div>
@@ -83,8 +75,12 @@ export default {
 }
 
 .swiper-image {
-  //height: 250px;
+  height: 250px;
   width: 100%;
-  object-fit: contain;
+  background-position: center;
+  background-size: cover;
+  border-top-left-radius: 45px;
+  border-top-right-radius: 45px;
+
 }
 </style>
