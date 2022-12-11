@@ -1,0 +1,125 @@
+<template>
+  <div class="input-selected-layout">
+    <div ref="selected" class="input-selected">
+      <input
+          class="input-selected-input"
+          type="text"
+          :placeholder="placeholder"
+          @click="clickInput"
+      >
+      <img class="input-selected-image" src="/src/assets/image/input/icons/arrow-down.svg"/>
+    </div>
+    <div ref="modal" class="input-modal-wrapper">
+      <p
+          v-for="(item, index) in items"
+          :key="index"
+          @click="selectItem(item.name)"
+          class="input-modal-value">{{ item.name }}</p>
+    </div>
+  </div>
+</template>
+
+<script>
+import { reactive, ref } from "vue";
+
+export default {
+  name: "selected",
+  props: {
+    items: {
+      type: Object,
+      default: () => []
+    }
+  },
+  setup (props) {
+
+    const selected = ref()
+    const modal = ref()
+
+    const placeholder = ref(props.items[0].name)
+
+    const selectItem = (city) => {
+      placeholder.value = city
+      clickInput()
+    }
+
+    const clickInput = () => {
+      const active = selected.value.classList.contains('input-selected-active')
+      active ? selected.value.classList.remove('input-selected-active') : selected.value.classList.add('input-selected-active')
+      active ? modal.value.style.display = 'none' : modal.value.style.display = 'block'
+    }
+
+    return { placeholder, selected, modal, selectItem, clickInput }
+  }
+}
+</script>
+
+<style lang="scss" scoped>
+@import "./src/assets/scss/utilities/mixins";
+@import "./src/assets/scss/utilities/variables";
+
+.input-selected {
+  @include button(0, $fff, 1px solid $g-9D9B95, $border-radius-4);
+  min-height: 38px;
+  position: relative;
+  padding: 0 0 0 11px;
+  transition: all .6s;
+  &:hover {
+    border: 1px solid $o-f9961e;
+  }
+  &-layout {
+    position: relative;
+  }
+  &-input {
+    @include fontFamily($font-family-manrope-600, 14px, $black);
+    width: 100%;
+    height: 38px;
+    &:focus {
+      outline: none;
+    }
+    &::placeholder {
+      @include fontFamily($font-family-manrope-600, 14px, $g-9D9B95);
+    }
+  }
+  &-image {
+    position: absolute;
+    right: 11px;
+    top: 50%;
+    transform: translate(0, -50%);
+    transition: all 0.6s;
+  }
+}
+
+.input-modal {
+  &-wrapper {
+    display: none;
+    position: absolute;
+    left: 0;
+    right: 0;
+    @include button(11px, $fff, none, $border-radius-4);
+    margin: 10px 0 0 0;
+    z-index: 99;
+  }
+  &-value {
+    @include fontFamily($font-family-manrope-600, 16px, $black);
+    margin: 0 0 10px 0;
+    cursor: pointer;
+    transition: color 0.6s;
+    &:hover {
+      color: $o-f9961e;
+    }
+    &:last-child {
+      margin: 0 0 0 0;
+    }
+  }
+}
+
+.input-selected-active {
+  border: 1px solid $o-f9961e;
+  transition: all 0.6s;
+  & > .input-selected-image {
+    transform: rotate(-180deg);
+  }
+}
+
+
+</style>

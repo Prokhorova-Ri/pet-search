@@ -1,29 +1,21 @@
 <template>
   <div class="container">
-    <div class="card-map">
-      <Map
-          border-radius="20px"
-          :coordinates="[59.892315, 30.470127]"
-          :zoom="120"
-          id="dev"
-      />
-    </div>
+    <SearchWrapper />
   </div>
 </template>
 
 <script>
-import Map from '@/components/Map/index.vue'
+import SearchWrapper from '@/components/SearchWrapper/index.vue'
 export default {
   name: "dev_ilya",
   components: {
-    Map
+    SearchWrapper
   }
 }
 </script>
 
-<style scoped>
-.card-map {
-  width: 480px;
-  height: 600px;
-}
+<style lang="scss" scoped>
+@import "/src/assets/scss/utilities/mixins";
+@import "./src/assets/scss/utilities/variables";
+
 </style>
