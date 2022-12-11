@@ -39,6 +39,11 @@ const buttons = {
         name: 'Авторизация',
         code: 'auth_tab',
         className: 'btn-tab-auth'
+    },
+    search: {
+        name: 'Подобрать',
+        code: 'search',
+        className: 'btn-search'
     }
 }
 

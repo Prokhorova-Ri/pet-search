@@ -25,15 +25,28 @@
   &-enter {
     @include button(20px 20px, $fff);
     width: 60%;
-    font-weight: 600;
+    @include fontFamily($font-family-manrope-600, 16px, $black);
     margin-top: 20px;
   }
   &-map {
     @include button(10px 10px, $fff, 2px solid $border, 10px);
     width: 100%;
-    font-weight: 600;
-    color: $dark-gray;
-    background: #fcf5e3;
+    @include fontFamily($font-family-manrope-600, 16px, $black);
+    color: $black;
+    background: #d1d1d1;
+  }
+  &-search {
+    @include fontFamily($font-family-manrope-600, 16px, $fff);
+    width: 100%;
+    background: $o-f9961e;
+    border-radius: $border-radius-4;
+    transition: all 0.6s;
+    min-height: 40px;
+    &:hover {
+      background-color: $fff;
+      color: $black;
+      border: 1px solid $o-f9961e;
+    }
   }
 }
 
