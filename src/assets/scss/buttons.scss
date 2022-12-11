@@ -13,14 +13,9 @@
     }
   }
   &-reg {
-    @include button(0 0, transparent, none, 8px);
-    @include fontFamily($font-family-manrope-400, 16px);
-    margin-left: 5px;
-    color: $ginger;
-    text-transform: uppercase;
-    &:hover{
-      text-decoration: underline;
-    }
+    @include button(10px 10px, transparent, none, 8px);
+    @include fontFamily($font-family-manrope-600, 16px, $black);
+    width: 60%;
   }
   &-enter {
     @include button(20px 20px, $fff);
