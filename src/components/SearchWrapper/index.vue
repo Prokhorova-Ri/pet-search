@@ -7,7 +7,7 @@
       </div>
       <div class="search-wrapper-who-block">
         <p class="search-wrapper-who">КОГО ВЫ ИЩЕТЕ</p>
-        <InputCheckBoxRadio :items="who" />
+        <InputCheckBoxRadio :items="who" name="main" />
       </div>
       <div class="search-wrapper-where-block">
         <p class="search-wrapper-type">ТИП ОБЪЯВЛЕНИЯ</p>

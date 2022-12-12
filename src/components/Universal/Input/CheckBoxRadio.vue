@@ -1,31 +1,27 @@
 <template>
  <div class="checkbox-radio">
-   <div class="checkbox-radio-form" v-for="(item, index) in items" :key="item.id" @click="clickOnInput(index)">
-     <input ref="input" class="custom-radio" :id="item.id" type="radio">
-     <label :for="item.id">{{ item.name }}</label>
+   <div class="checkbox-radio-form" v-for="item in items" :key="item.id">
+     <input ref="input" class="custom-radio" :id="item.code" type="radio" :name="name" :value="item.code">
+     <label :for="item.code">{{ item.name }}</label>
    </div>
  </div>
 </template>
 
 <script>
-import { ref } from 'vue'
 export default {
   name: "CheckBoxRadio",
   props: {
     items: {
       type: Object,
       default: () => []
+    },
+    name: {
+      type: String,
+      default: 'empty'
     }
   },
   setup () {
-    const input = ref()
-
-    const clickOnInput = (index) => {
-      // input.value.forEach((checked) => { checked.removeAttribute('checked') })
-      // input.value[index].setAttribute('checked')
-    }
-
-    return { input, clickOnInput }
+    return {}
   }
 }
 </script>
