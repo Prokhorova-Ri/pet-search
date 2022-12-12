@@ -23,7 +23,7 @@ export default {
     },
     zoom: {
       type: Number,
-      default: 100
+      default: 16
     }
   },
   setup (props) {
