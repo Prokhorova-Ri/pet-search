@@ -33,9 +33,9 @@ export default {
   .checkbox {
     &-radio {
       @include gridContainer(repeat(auto-fit, minmax(50px, 1fr)));
-      min-height: 38px;
+      min-height: 56px;
       border: 1px solid $g-9D9B95;
-      border-radius: 5px;
+      border-radius: 10px;
       &-form {
         min-height: inherit;
         display: flex;

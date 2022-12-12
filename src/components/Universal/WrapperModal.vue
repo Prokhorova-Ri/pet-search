@@ -4,7 +4,7 @@
       :name="name"
       @click-outside="clickOutsideModal"
   >
-    <div class="modal-form" :style="styleModal">
+    <div class="modal-form">
       <slot name="form" />
     </div>
   </vue-final-modal>
@@ -50,7 +50,7 @@ export default {
 <style lang="scss" scoped>
 .modal-form {
   width: 450px;
-  max-height: 450px;
+  max-height: 55vh;
   height: 90vh;
   background-color: white;
   border-radius: 45px;
