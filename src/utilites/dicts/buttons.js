@@ -49,6 +49,11 @@ const buttons = {
         name: 'Подобрать',
         code: 'search',
         className: 'btn-search'
+    },
+    more: {
+        name: 'Загрузить еще',
+        code: 'more',
+        className: 'btn-more'
     }
 }
 

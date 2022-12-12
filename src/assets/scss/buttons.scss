@@ -53,6 +53,17 @@
       border: 1px solid $o-f9961e;
     }
   }
+  &-more {
+    @include fontFamily($font-family-manrope-600, 16px, $black);
+    @include button(15px 10px, transparent, 1px solid $ginger, 20px);
+    width: 100%;
+    margin: 60px 0;
+    transition: all .6s;
+    &:hover {
+      background-color: $ginger;
+      color: white;
+    }
+  }
 }
 
 .btn-tab {

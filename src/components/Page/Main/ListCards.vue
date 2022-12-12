@@ -3,15 +3,16 @@
     <div class="main-cards-wrapper">
       <MainCard v-for="(index) in 20" :key="index" :index="index" />
     </div>
-    <button class="main-cards-more">Загрузить еще</button>
+    <Button type="more" />
   </section>
 </template>
 
 <script>
+import Button from "../../../components/Universal/Button.vue";
 import MainCard from "@/components/Universal/Cards/MainCard.vue";
 export default {
   name: "ListCards",
-  components: { MainCard }
+  components: { MainCard, Button }
 }
 </script>
 
