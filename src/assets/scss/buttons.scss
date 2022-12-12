@@ -24,11 +24,21 @@
     margin-top: 20px;
   }
   &-map {
-    @include button(10px 10px, $fff, 2px solid $border, 10px);
-    width: 100%;
+    @include button(15px 10px, 1px solid $ginger, none);
     @include fontFamily($font-family-manrope-600, 16px, $black);
-    color: $black;
-    background: #d1d1d1;
+    border-bottom-left-radius: 45px;
+    border-bottom-right-radius: 45px;
+    width: 100%;
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    transition: all 0.6s;
+    z-index: 10000;
+    &:hover {
+      background-color: $ginger;
+      color: $fff;
+    }
   }
   &-search {
     @include fontFamily($font-family-manrope-600, 16px, $fff);

@@ -20,8 +20,9 @@ export default {
 
 .main-cards {
   &-wrapper {
-    @include gridContainer(repeat(auto-fit, minmax(400px, 1fr)));
-    gap: 20px;
+    @include gridContainer(repeat(auto-fit, minmax(320px, 1fr)));
+    column-gap: 20px;
+    row-gap: 45px;
   }
   &-more {
     margin: 60px 0;

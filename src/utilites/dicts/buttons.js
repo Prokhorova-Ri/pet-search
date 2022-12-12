@@ -30,6 +30,11 @@ const buttons = {
         code: 'map',
         className: 'btn-map'
     },
+    card: {
+        name: 'Показать карточку',
+        code: 'card',
+        className: 'btn-map'
+    },
     reg_tab: {
         name: 'Регистрация',
         code: 'reg_tab',
