@@ -1,26 +1,28 @@
 <template>
   <div class="input-selected-layout">
-    <div ref="selected" class="input-selected">
+    <div ref="selected" class="input-selected" :style="`width: ${ width }`">
       <input
           class="input-selected-input"
           type="text"
           :placeholder="placeholder"
           @click="clickInput"
       >
-      <img class="input-selected-image" src="/src/assets/image/input/icons/arrow-down.svg"/>
+      <img class="input-selected-image" src="/src/assets/image/input/icons/arrow-down.svg" alt="Выбрать"/>
     </div>
     <div ref="modal" class="input-modal-wrapper">
       <p
           v-for="(item, index) in items"
           :key="index"
           @click="selectItem(item.name)"
-          class="input-modal-value">{{ item.name }}</p>
+          :style="item.code === 'empty' ? 'display: none' : ''"
+          class="input-modal-value">{{ item.name }}
+      </p>
     </div>
   </div>
 </template>
 
 <script>
-import { reactive, ref } from "vue";
+import { ref } from "vue";
 
 export default {
   name: "selected",
@@ -28,6 +30,10 @@ export default {
     items: {
       type: Object,
       default: () => []
+    },
+    width: {
+      type: String,
+      default: '100%'
     }
   },
   setup (props) {
@@ -58,11 +64,14 @@ export default {
 @import "./src/assets/scss/utilities/variables";
 
 .input-selected {
-  @include button(0, $fff, 1px solid $g-9D9B95, $border-radius-4);
-  min-height: 38px;
+  @include flexContainer(column, center, flex-start);
+  @include button(0, $fff, 1px solid $g-9D9B95, $border-radius-10);
+  min-height: 56px;
   position: relative;
   padding: 0 0 0 11px;
   transition: all .6s;
+  width: 80%;
+  margin: 0 auto;
   &:hover {
     border: 1px solid $o-f9961e;
   }
@@ -72,7 +81,7 @@ export default {
   &-input {
     @include fontFamily($font-family-manrope-600, 14px, $black);
     width: 100%;
-    height: 38px;
+    height: 56px;
     &:focus {
       outline: none;
     }
@@ -98,6 +107,7 @@ export default {
     @include button(11px, $fff, none, $border-radius-4);
     margin: 10px 0 0 0;
     z-index: 99;
+    box-shadow: 9px 11px 0.5rem rgb(164 164 164 / 12%);
   }
   &-value {
     @include fontFamily($font-family-manrope-600, 16px, $black);

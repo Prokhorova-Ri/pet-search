@@ -44,9 +44,9 @@
     @include fontFamily($font-family-manrope-600, 16px, $fff);
     width: 100%;
     background: $o-f9961e;
-    border-radius: $border-radius-4;
+    border-radius: $border-radius-10;
     transition: all 0.6s;
-    min-height: 40px;
+    min-height: 56px;
     &:hover {
       background-color: $fff;
       color: $black;
@@ -68,14 +68,39 @@
 
 .btn-tab {
   &-auth {
-    @include button(20px 20px, $ginger, none, 40px);
-    @include fontFamily($font-family-manrope-600, 16px);
-    width: 80%;
+    @include fontFamily($font-family-manrope-600, 18px, $ginger, 120%);
+    background: transparent;
+    &:hover {
+      text-decoration: underline;
+    }
   }
   &-reg {
-    @include button(20px 20px, $ginger, none, 40px);
-    width: 100%;
-    font-weight: 600;
-    margin: 20px 0 0 0;
+    @include fontFamily($font-family-manrope-600, 18px, $ginger, 120%);
+    background: transparent;
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+  &-enter {
+    @include button(20px 20px, $ginger, 1px solid $ginger, 10px);
+    @include fontFamily($font-family-manrope-600, 18px, $fff);
+    transition: all 0.6s;
+    width: 80%;
+    &:hover {
+      background-color: $fff;
+      border: 1px solid $ginger;
+      color: $black;
+    }
+  }
+  &-register {
+    @include button(20px 20px, $ginger, 1px solid $ginger, 10px);
+    @include fontFamily($font-family-manrope-600, 18px, $fff);
+    transition: all 0.6s;
+    width: 80%;
+    &:hover {
+      background-color: $fff;
+      border: 1px solid $ginger;
+      color: $black;
+    }
   }
 }

@@ -3,14 +3,14 @@
     <div>
       <h2 class="form-auth__title">Авторизация</h2>
       <form @submit.prevent="getParamsFormAuth" class="form-auth__layout">
-        <input v-model="authValues.email" class="form-auth__input" type="text" placeholder="Email" />
-        <input v-model="authValues.password" class="form-auth__input" type="password" placeholder="Пароль" />
-        <Button type="auth_tab" select="submit" />
+        <input v-model="authValues.email" class="inputs-main" type="text" placeholder="Email" />
+        <input v-model="authValues.password" class="inputs-main" type="password" placeholder="Пароль" />
+        <Button type="enter_tab" select="submit" />
       </form>
     </div>
     <div class="form-auth__registration">
       <h4 class="form-auth__reg">{{ isAuthForm ? "ЕСТЬ АККАУНТ?" : "НЕТ АККАУНТА?" }}</h4>
-      <Button :type="isAuthForm ? 'auth' : 'reg'" @clickOnButton="changeForm" />
+      <Button :type="isAuthForm ? 'auth_tab' : 'reg_tab'" @clickOnButton="changeForm" />
     </div>
   </div>
 </template>
@@ -45,7 +45,7 @@ export default {
 
     return {
       isAuthForm: computed(() => {
-        return typeForm.value === "reg" ? true : false;
+        return typeForm.value === "reg";
       }),
       changeForm,
       typeForm,
@@ -62,15 +62,15 @@ export default {
 
 .form-auth {
   @include flexContainer(column, space-between, center);
-  @include fontFamily($font-family-manrope-400, 16px);
   background: $fff;
   text-align: center;
   padding: 60px 10px;
   height: 100%;
-  border-radius: 45px;
+  border-radius: 20px;
   box-shadow: 7px 7px 10px $grey;
   &__title {
     margin-bottom: 30px;
+    @include fontFamily($font-family-manrope-600, 24px);
   }
   &__input {
     border: 1px solid $border;
@@ -86,8 +86,12 @@ export default {
     justify-content: center;
     align-items: center;
     text-align: center;
-    width: 70%;
+    gap: 10px;
+    width: 80%;
     padding: 33px 0 0 0;
+  }
+  &__reg {
+    @include fontFamily($font-family-manrope-600, 14px);
   }
 }
 </style>

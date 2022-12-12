@@ -1,28 +1,34 @@
 <template>
   <div class="form-reg">
-    <h3 class="form-reg__title">Зарегистрироваться</h3>
+    <h2 class="form-reg__title">Зарегистрироваться</h2>
     <form class="form-reg__layout">
-      <input class="form-reg__input" type="text" placeholder="Email" />
-      <input class="form-reg__input" type="text" placeholder="Пароль" />
-       <input class="form-reg__input" type="text" placeholder="Повторите пароль" />
-      <Button :type="isAuthForm ? 'auth' : 'reg'" @clickOnButton="changeForm" />
+      <input class="inputs-main" type="text" placeholder="Email" />
+      <div style="margin: 0 0 15px 0">
+        <InputSelected :items="city" width="80%"/>
+      </div>
+      <input class="inputs-main" type="text" placeholder="Пароль" />
+      <input class="inputs-main" type="text" placeholder="Повторите пароль" />
+      <Button type="register_tab" select="submit" />
     </form>
-    <div class="form-auth__registration">
-      <h5 class="form-auth__reg">{{!isAuthForm ? "Авторизация" : "Зарегистрировать аккаунт" }}</h5>
-      <Button :type="!isAuthForm ? 'auth' : 'reg'" @clickOnButton="changeForm" />
+    <div class="form-reg__registration">
+      <h5 class="form-reg__reg">{{!isAuthForm ? "ЕСТЬ АККАУНТ?" : "Зарегистрировать аккаунт" }}</h5>
+      <Button :type="!isAuthForm ? 'auth_tab' : 'reg_tab'" @clickOnButton="changeForm" />
     </div>
   </div>
 </template>
 
 <script>
 import { computed, ref } from "vue";
+import InputSelected from "../../../components/Universal/Input/Selected.vue";
 import Button from "../../../components/Universal/Button.vue";
+import { useConfigSite } from "../../../store/config";
 export default {
   name: "Reg",
-  components: { Button },
+  components: { Button, InputSelected },
   emits: ["getButtonCode"],
   setup(props, context) {
     const typeForm = ref();
+    const store = useConfigSite()
 
     const changeForm = (code) => {
       typeForm.value = code;
@@ -30,8 +36,9 @@ export default {
     };
 
     return {
+      city: computed(() => store?.getConfigSite?.city),
       isAuthForm: computed(() => {
-        return typeForm.value === "reg" ? true : false;
+        return typeForm.value === "reg";
       }),
       changeForm,
     };
@@ -51,6 +58,7 @@ export default {
   box-shadow: 7px 7px 10px $grey;
   border-radius: 20px;
   &__title {
+    @include fontFamily($font-family-manrope-600, 24px);
     margin-bottom: 20px;
   }
   &__input {
@@ -63,6 +71,11 @@ export default {
     border-radius: 15px;
   }
   &__registration {
-    padding: 33px 0 0 0;
+    @include flexContainer(row, center, center);
+    gap: 10px;
+    margin: 30px 0 0 0;
+  }
+  &__reg {
+    @include fontFamily($font-family-manrope-600, 14px);
   }
 }</style>

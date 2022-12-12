@@ -40,10 +40,20 @@ const buttons = {
         code: 'reg_tab',
         className: 'btn-tab-reg'
     },
+    register_tab: {
+        name: 'Регистрация',
+        code: 'register_tab',
+        className: 'btn-tab-register'
+    },
     auth_tab: {
         name: 'Авторизация',
         code: 'auth_tab',
         className: 'btn-tab-auth'
+    },
+    enter_tab: {
+        name: 'Авторизация',
+        code: 'enter_tab',
+        className: 'btn-tab-enter'
     },
     search: {
         name: 'Подобрать',
