@@ -50,8 +50,7 @@ export default {
 <style lang="scss" scoped>
 .modal-form {
   width: 450px;
-  max-height: 55vh;
-  height: 90vh;
+  max-height: 90vh;
   background-color: white;
   border-radius: 45px;
   //  Не удалять, нужно что бы центр сделать
