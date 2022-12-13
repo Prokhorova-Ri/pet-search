@@ -36,7 +36,8 @@ export default {
       default: '100%'
     }
   },
-  setup (props) {
+  emits: ['updateSelectCity'],
+  setup (props, context) {
 
     const selected = ref()
     const modal = ref()
@@ -45,6 +46,7 @@ export default {
 
     const selectItem = (city) => {
       placeholder.value = city
+      context.emit('updateSelectCity', city)
       clickInput()
     }
 
