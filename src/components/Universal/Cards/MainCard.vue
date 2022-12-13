@@ -18,7 +18,7 @@
     <div ref="backCard" class="main-card-back">
       <div class="main-card-map">
         <Map
-            border-radius="45px"
+            border-radius="1.25rem"
             :coordinates="[59.892315, 30.470127]"
             :zoom="16"
             :id="`main-${index}`"
@@ -75,7 +75,7 @@ export default {
   @include fontFamily($font-family-manrope-500, 16px);
   background: $fff;
   color: $dark-gray;
-  border-radius: 45px;
+  border-radius: $border-radius-125rem;
   //border: 2px solid $border;
   box-shadow: 9px 11px 0.5rem rgb(164 164 164 / 12%);
   //min-height: 200px;

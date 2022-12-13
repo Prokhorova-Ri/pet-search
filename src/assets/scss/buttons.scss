@@ -26,8 +26,8 @@
   &-map {
     @include button(15px 10px, 1px solid $ginger, none);
     @include fontFamily($font-family-manrope-600, 16px, $black);
-    border-bottom-left-radius: 45px;
-    border-bottom-right-radius: 45px;
+    border-bottom-left-radius: $border-radius-125rem;
+    border-bottom-right-radius: $border-radius-125rem;
     width: 100%;
     position: absolute;
     left: 0;
@@ -55,7 +55,7 @@
   }
   &-more {
     @include fontFamily($font-family-manrope-600, 16px, $black);
-    @include button(15px 10px, transparent, 1px solid $ginger, 20px);
+    @include button(15px 10px, transparent, 1px solid $ginger, $border-radius-125rem);
     width: 100%;
     margin: 60px 0;
     transition: all .6s;

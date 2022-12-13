@@ -3,7 +3,7 @@
     <div class="search-wrapper">
       <div class="search-wrapper-where-block">
         <p class="search-wrapper-where">ГДЕ ВЫ ИЩЕТЕ</p>
-        <InputSelected :items="city" />
+        <InputSelected :items="city" id="where" />
       </div>
       <div class="search-wrapper-who-block">
         <p class="search-wrapper-who">КОГО ВЫ ИЩЕТЕ</p>
@@ -11,7 +11,7 @@
       </div>
       <div class="search-wrapper-where-block">
         <p class="search-wrapper-type">ТИП ОБЪЯВЛЕНИЯ</p>
-        <InputSelected :items="type" />
+        <InputSelected :items="type" id="type" />
       </div>
       <Button type="search" />
     </div>

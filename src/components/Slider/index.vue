@@ -19,9 +19,7 @@
         <div
             class="swiper-image"
             style="background-image: url('https://cs8.pikabu.ru/post_img/big/2016/03/06/9/1457279582133433203.jpg')"
-        >
-
-        </div>
+        />
 <!--        <img-->
 <!--          class="swiper-image"-->
 <!--          src=""-->
@@ -60,15 +58,15 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import "./src/assets/scss/utilities/mixins";
+@import "./src/assets/scss/utilities/variables";
 .swiper {
   width: 100%;
   height: 250px;
 }
 
 .swiper-slide {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  @include flexContainer(row, cneter, center);
   font-size: 22px;
   font-weight: bold;
   color: #fff;
@@ -79,8 +77,8 @@ export default {
   width: 100%;
   background-position: center;
   background-size: cover;
-  border-top-left-radius: 45px;
-  border-top-right-radius: 45px;
+  border-top-left-radius: $border-radius-125rem;
+  border-top-right-radius: $border-radius-125rem;
 
 }
 </style>
