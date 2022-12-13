@@ -1,7 +1,7 @@
 <template>
- <div class="checkbox-radio">
+ <div class="checkbox-radio" >
    <div class="checkbox-radio-form" v-for="item in items" :key="item.id">
-     <input ref="input" class="custom-radio" :id="item.code" type="radio" :name="name" :value="item.code">
+     <input @change="sendValue(item.name)" ref="input" class="custom-radio" :id="item.code" type="radio" :name="name" :value="item.code">
      <label :for="item.code">{{ item.name }}</label>
    </div>
  </div>
@@ -20,8 +20,12 @@ export default {
       default: 'empty'
     }
   },
-  setup () {
-    return {}
+  emits: ["updateValueWho"],
+  setup (props, context) {
+    const sendValue = (payload) => {
+      context.emit("updateValueWho", payload)
+    }
+    return { sendValue }
   }
 }
 </script>

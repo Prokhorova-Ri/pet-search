@@ -2,9 +2,9 @@
   <div class="form-auth">
     <div>
       <h2 class="form-auth__title">Авторизация</h2>
-      <form @submit.prevent="getParamsFormAuth" class="form-auth__layout">
-        <input v-model="authValues.email" class="inputs-main" type="text" placeholder="Email" />
-        <input v-model="authValues.password" class="inputs-main" type="password" placeholder="Пароль" />
+      <form @submit.prevent="sendValueFormAuth" class="form-auth__layout">
+        <input v-model="authForm.email" class="inputs-main" type="text" placeholder="Email" />
+        <input v-model="authForm.password" class="inputs-main" type="password" placeholder="Пароль" />
         <Button type="enter_tab" select="submit" />
       </form>
     </div>
@@ -16,8 +16,7 @@
 </template>
 
 <script>
-import { computed, ref } from "vue";
-import { reactive } from "@vue/reactivity";
+import { computed, ref, reactive } from "vue";
 import Button from "../../../components/Universal/Button.vue";
 export default {
   name: "Auth",
@@ -27,8 +26,7 @@ export default {
   emits: ["getButtonCode"],
   setup(props, context) {
     const typeForm = ref();
-
-    const authValues = reactive({
+    const authForm = reactive({
       email: "",
       password: "",
     });
@@ -38,19 +36,23 @@ export default {
       context.emit("getButtonCode", code);
     };
 
-    const getParamsFormAuth = () => {
-      console.warn("getParamsFormAuth", authValues);
-      //  TODO API
-    };
+    const sendValueFormAuth = () => {
+      console.log("sendValueFormAuth", authForm)
+      clearValueAuth()
+    }
+
+    const clearValueAuth = () => {
+      for (const key in authForm) { authForm[key] = "" }
+    }
 
     return {
       isAuthForm: computed(() => {
         return typeForm.value === "reg";
       }),
-      changeForm,
       typeForm,
-      authValues,
-      getParamsFormAuth,
+      authForm,
+      changeForm,
+      sendValueFormAuth,
     };
   },
 };
