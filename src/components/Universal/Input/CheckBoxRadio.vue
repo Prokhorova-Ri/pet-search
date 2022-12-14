@@ -104,7 +104,7 @@ export default {
 /* стили для радиокнопки, находящейся в состоянии checked */
 .custom-radio:checked+label::before {
   border-color: #0b76ef;
-  background-color: $o-f9961e;
+  background-color: $ginger;
   background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='3' fill='%23fff'/%3e%3c/svg%3e");
 }
 /* стили для радиокнопки, находящейся в состоянии disabled */

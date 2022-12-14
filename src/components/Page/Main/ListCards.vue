@@ -3,7 +3,7 @@
     <div class="main-cards-wrapper">
       <MainCard v-for="(index) in 20" :key="index" :index="index" />
     </div>
-    <Button type="more" />
+    <Button name="more" />
   </section>
 </template>
 

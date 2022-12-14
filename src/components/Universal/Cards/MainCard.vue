@@ -6,13 +6,13 @@
       </div>
       <div class="main-card-block">
         <div class="main-card-tags">
-          <p class="main-card-tags-tag" v-for="tag in testObject" :key="tag.id">{{ tag.tag }}</p>
+          <p class="main-card-tags-tag" v-for="tag in testObject" :key="tag.id">#{{ tag.tag }}</p>
         </div>
         <div class="main-card-name">Пропала собака, Москва</div>
         <div class="main-card-text">
           Кобель такса кролик длинношёрстный рыжий кличка Ян с ошейником. В руки не даётся чужим. Полтора года.
         </div>
-        <Button @clickOnButton="changeTypeCard" type="map" />
+        <Button @clickOnButton="changeTypeCard" name="map" />
       </div>
     </div>
     <div ref="backCard" class="main-card-back">
@@ -23,7 +23,7 @@
             :zoom="16"
             :id="`main-${index}`"
         />
-        <Button @clickOnButton="changeTypeCard" type="card"/>
+        <Button @clickOnButton="changeTypeCard" name="card"/>
       </div>
     </div>
   </div>
@@ -50,6 +50,7 @@ export default {
     const testObject = reactive([
       { id: 0, tag: "Кошка" },
       { id: 1, tag: "Казань" },
+      { id: 2, tag: "Потерян" },
     ]);
 
     const changeTypeCard = (code) => {
@@ -70,26 +71,15 @@ export default {
 <style lang="scss" scoped>
 @import "./src/assets/scss/utilities/mixins";
 @import "./src/assets/scss/utilities/variables";
-// ВРЕМЕННЫЕ СТИЛИ, ДЛЯ ПОНИМАНИЯ
 .main-card {
   @include fontFamily($font-family-manrope-500, 16px);
   background: $fff;
-  color: $dark-gray;
+  color: $black;
   border-radius: $border-radius-125rem;
-  //border: 2px solid $border;
   box-shadow: 9px 11px 0.5rem rgb(164 164 164 / 12%);
-  //min-height: 200px;
   min-height: 470px;
   position: relative;
   perspective: 1000px;
-  //&:hover {
-  //  & > .main-card-front {
-  //    transform: rotateY(180deg);
-  //  }
-  //  & > .main-card-back {
-  //    transform: rotateY(360deg);
-  //  }
-  //}
   &-block {
     text-align: center;
     padding: 10px;
@@ -103,11 +93,7 @@ export default {
     gap: 5px;
     margin: 0 0 10px 0;
     &-tag {
-      padding: 5px 10px;
-      background: #fcf5e3;
-      border-radius: 25px;
-      border: 2px solid $border;
-      @include fontFamily($font-family-manrope-500, 16px);
+      @include fontFamily($font-family-manrope-600, 16px, $ginger);
     }
   }
   &-name {
@@ -116,7 +102,7 @@ export default {
     text-align: left;
   }
   &-text {
-    @include fontFamily($font-family-manrope-600, 16px, $dark-gray);
+    @include fontFamily($font-family-manrope-600, 16px, $black);
     text-align: left;
     margin: 0 0 20px 0;
     padding: 0 0 40px 0;

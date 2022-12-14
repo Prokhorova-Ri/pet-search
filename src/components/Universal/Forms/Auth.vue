@@ -5,12 +5,12 @@
       <form @submit.prevent="sendValueFormAuth" class="form-auth__layout">
         <input v-model="authForm.email" class="inputs-main" type="text" placeholder="Email" />
         <input v-model="authForm.password" class="inputs-main" type="password" placeholder="Пароль" />
-        <Button type="enter_tab" select="submit" />
+        <Button name="enter_tab" select="submit" />
       </form>
     </div>
     <div class="form-auth__registration">
       <h4 class="form-auth__reg">{{ isAuthForm ? "ЕСТЬ АККАУНТ?" : "НЕТ АККАУНТА?" }}</h4>
-      <Button :type="isAuthForm ? 'auth_tab' : 'reg_tab'" @clickOnButton="changeForm" />
+      <Button :name="isAuthForm ? 'auth_tab' : 'reg_tab'" @clickOnButton="changeForm" />
     </div>
   </div>
 </template>

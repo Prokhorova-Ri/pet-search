@@ -5,9 +5,9 @@
         <img class="header-img" src="/src/assets/image/logo.png" alt="logo" />
         <h4>ПОИСК ПРОПАВШИХ ЖИВОТНЫХ</h4>
         <div class="header-right">
-          <button @click="changeModalAutherizaytion" :class="button.className" class="header-registration">
+          <Button @click="changeModalAutherizaytion" :class="button.className" class="header-registration">
             {{ button.name }}
-          </button>
+          </Button>
         </div>
       </div>
     </div>
@@ -26,7 +26,7 @@ import WrapperModal from "@/components/Universal/WrapperModal.vue";
 import AuthForm from "@/components/Universal/Forms/Auth.vue";
 import RegForm from "@/components/Universal/Forms/Reg.vue";
 import { computed, ref } from "vue";
-import { getButton } from "@/utilites/dicts/buttons.js";
+import { getButton } from "../utilites/dicts/buttons.js";
 export default {
   name: "VHeader",
   components: { WrapperModal, AuthForm, RegForm },
@@ -46,12 +46,12 @@ export default {
 
     return {
       isAuthForm: computed(() => {
-        return buttonCode.value === "reg_tab" ? true : false;
+        return buttonCode.value === "reg_tab";
       }),
-      activeModal, 
-      changeModalAutherizaytion, 
-      button, 
-      changeTypeForm 
+      activeModal,
+      changeModalAutherizaytion,
+      button,
+      changeTypeForm
     };
   },
 };
@@ -65,7 +65,7 @@ export default {
   @include fontFamily($font-family-manrope-400, 16px);
   display: flex;
   align-items: center;
-  justify-content: space-between; 
+  justify-content: space-between;
   height: 80px;
   padding: 20px 0;
   margin: 0 0 40px 0;

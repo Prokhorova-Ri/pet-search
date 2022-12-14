@@ -75,7 +75,7 @@ export default {
   width: 80%;
   margin: 0 auto;
   &:hover {
-    border: 1px solid $o-f9961e;
+    border: 1px solid $ginger;
   }
   &-layout {
     position: relative;
@@ -117,7 +117,7 @@ export default {
     cursor: pointer;
     transition: color 0.6s;
     &:hover {
-      color: $o-f9961e;
+      color: $ginger;
     }
     &:last-child {
       margin: 0 0 0 0;
@@ -126,7 +126,7 @@ export default {
 }
 
 .input-selected-active {
-  border: 1px solid $o-f9961e;
+  border: 1px solid $ginger;
   transition: all 0.6s;
   & > .input-selected-image {
     transform: rotate(-180deg);

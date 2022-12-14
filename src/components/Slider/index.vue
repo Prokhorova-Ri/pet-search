@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="slider-layout">
     <swiper
       :grabCursor="true"
       :effect="'creative'"
@@ -15,18 +15,17 @@
       :modules="modules"
       class="mySwiper"
     >
-      <swiper-slide>
+      <swiper-slide v-for="(index) in 3" :key="index">
         <div
             class="swiper-image"
-            style="background-image: url('https://cs8.pikabu.ru/post_img/big/2016/03/06/9/1457279582133433203.jpg')"
+            style="background-image: url('https://www.fashiontime.ru/upload/articles-v3/5f1a9660c98dbw719.jpg')"
         />
-<!--        <img-->
-<!--          class="swiper-image"-->
-<!--          src=""-->
-<!--          alt=""-->
-<!--        />-->
       </swiper-slide>
     </swiper>
+    <div class="slider-navigation">
+      <Button name="prev" />
+      <Button name="next" />
+    </div>
   </div>
 </template>
 
@@ -36,6 +35,7 @@ import "swiper/css";
 import "swiper/css/effect-creative";
 
 import { EffectCreative } from "swiper";
+import Button from "../../components/Universal/Button.vue";
 
 export default {
   name: "index",
@@ -48,6 +48,7 @@ export default {
   components: {
     Swiper,
     SwiperSlide,
+    Button
   },
   setup() {
     return {
@@ -60,25 +61,40 @@ export default {
 <style lang="scss" scoped>
 @import "./src/assets/scss/utilities/mixins";
 @import "./src/assets/scss/utilities/variables";
-.swiper {
-  width: 100%;
-  height: 250px;
+
+.slider {
+  &-layout {
+    position: relative;
+  }
+  &-navigation {
+    @include flexContainer(row, center, center);
+    gap: 5px;
+    position: absolute;
+    right: 10px;
+    bottom: 10px;
+    z-index: 99;
+  }
 }
 
-.swiper-slide {
-  @include flexContainer(row, cneter, center);
-  font-size: 22px;
-  font-weight: bold;
-  color: #fff;
-}
+  .swiper {
+    width: 100%;
+    height: 250px;
+  }
 
-.swiper-image {
-  height: 250px;
-  width: 100%;
-  background-position: center;
-  background-size: cover;
-  border-top-left-radius: $border-radius-125rem;
-  border-top-right-radius: $border-radius-125rem;
+  .swiper-slide {
+    @include flexContainer(row, cneter, center);
+    font-size: 22px;
+    font-weight: bold;
+    color: #fff;
+  }
 
-}
+  .swiper-image {
+    height: 250px;
+    width: 100%;
+    background-position: center;
+    background-size: cover;
+    border-top-left-radius: $border-radius-125rem;
+    border-top-right-radius: $border-radius-125rem;
+
+  }
 </style>

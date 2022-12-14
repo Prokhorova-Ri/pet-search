@@ -13,7 +13,7 @@
         <p class="search-wrapper-type">ТИП ОБЪЯВЛЕНИЯ</p>
         <InputSelected @updateSelectCity="(item) => valueFilterForm.type_ads = item" :items="type" id="type" />
       </div>
-      <Button @clickOnButton="sendValueFilter" type="search" />
+      <Button @clickOnButton="sendValueFilter" name="search" />
     </div>
   </section>
 </template>
