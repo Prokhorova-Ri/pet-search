@@ -8,11 +8,11 @@
       </div>
       <input v-model="regForm.password" class="inputs-main" type="password" placeholder="Пароль" />
       <input v-model="regForm.confirmPassword" class="inputs-main" type="password" placeholder="Повторите пароль" />
-      <Button type="register_tab" select="submit" />
+      <Button name="register_tab" type="submit" />
     </form>
     <div class="form-reg__registration">
       <h5 class="form-reg__reg">{{!isAuthForm ? "ЕСТЬ АККАУНТ?" : "Зарегистрировать аккаунт" }}</h5>
-      <Button :type="!isAuthForm ? 'auth_tab' : 'reg_tab'" @clickOnButton="changeForm" />
+      <Button :name="!isAuthForm ? 'auth_tab' : 'reg_tab'" @clickOnButton="changeForm" />
     </div>
   </div>
 </template>

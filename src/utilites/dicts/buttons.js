@@ -64,6 +64,16 @@ const buttons = {
         name: 'Загрузить еще',
         code: 'more',
         className: 'btn-more'
+    },
+    prev: {
+        name: '',
+        code: 'prev',
+        className: 'btn-navigation-prev'
+    },
+    next: {
+        name: '',
+        code: 'next',
+        className: 'btn-navigation-next'
     }
 }
 

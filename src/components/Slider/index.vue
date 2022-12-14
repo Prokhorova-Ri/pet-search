@@ -15,20 +15,16 @@
       :modules="modules"
       class="mySwiper"
     >
-      <swiper-slide>
+      <swiper-slide v-for="(index) in 3" :key="index">
         <div
             class="swiper-image"
-            style="background-image: url('https://cs8.pikabu.ru/post_img/big/2016/03/06/9/1457279582133433203.jpg')"
+            style="background-image: url('https://www.fashiontime.ru/upload/articles-v3/5f1a9660c98dbw719.jpg')"
         />
       </swiper-slide>
     </swiper>
     <div class="slider-navigation">
-      <button  class="slider-navigation-prev">
-        <img src="/src/assets/image/button/icons/arrow-left.svg" alt="Назад">
-      </button>
-      <button class="slider-navigation-next">
-        <img src="/src/assets/image/button/icons/arrow-left.svg" alt="Вперед">
-      </button>
+      <Button name="prev" />
+      <Button name="next" />
     </div>
   </div>
 </template>
@@ -39,6 +35,7 @@ import "swiper/css";
 import "swiper/css/effect-creative";
 
 import { EffectCreative } from "swiper";
+import Button from "../../components/Universal/Button.vue";
 
 export default {
   name: "index",
@@ -51,6 +48,7 @@ export default {
   components: {
     Swiper,
     SwiperSlide,
+    Button
   },
   setup() {
     return {
@@ -75,21 +73,6 @@ export default {
     right: 10px;
     bottom: 10px;
     z-index: 99;
-    &-prev, &-next {
-      width: 30px;
-      height: 30px;
-      @include button(0, $fff, 1px solid $black, $border-radius-50);
-      @include flexContainer(row, center, center);
-      & > img {
-        width: 13px;
-        height: 13px;
-      }
-    }
-    &-next {
-      & > img {
-        transform: rotate(180deg);
-      }
-    }
   }
 }
 

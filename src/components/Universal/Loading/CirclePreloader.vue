@@ -1,11 +1,13 @@
 <!--
 EXAMPLE IN COMPONENT
-<UniversalLoadingCirclePreloader size="16px" border-width="2px" border-color="lightgrey" border-active-color="white" />
+import CirclePreloader from "../../components/Universal/Loading/CirclePreloader.vue";
+components: { CirclePreloader },
+<CirclePreloader size="16px" border-width="2px" border-color="#1B1918" border-active-color="white" />
 -->
 
-<script lang="ts">
+<script>
 import { h } from 'vue'
-export default defineComponent({
+export default {
   name: 'CirclePreloader',
   props: {
     size: {
@@ -45,7 +47,7 @@ export default defineComponent({
       }
     )
   }
-})
+}
 </script>
 
 <style>

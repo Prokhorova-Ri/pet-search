@@ -4,8 +4,8 @@
   </div>
 </template>
 
-<script lang="ts">
-export default defineComponent({
+<script>
+export default {
   name: 'CirclePreloaderPageWrapper',
   props: {
     size: {
@@ -25,5 +25,5 @@ export default defineComponent({
       default: 'rgba(128,128,128,1)'
     }
   }
-})
+}
 </script>
