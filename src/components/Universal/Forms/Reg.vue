@@ -2,12 +2,12 @@
   <div class="form-reg">
     <h2 class="form-reg__title">Зарегистрироваться</h2>
     <form @submit.prevent="sendValueFormReg" class="form-reg__layout">
+      <input v-model="regForm.name" class="inputs-main" type="text" placeholder="Как вас зовут?" />
       <input v-model="regForm.email" class="inputs-main" type="text" placeholder="Email" />
       <div style="margin: 0 0 15px 0">
         <InputSelected @updateSelectCity="(payload) => regForm.city = payload" :items="city" width="80%"/>
       </div>
       <input v-model="regForm.password" class="inputs-main" type="password" placeholder="Пароль" />
-      <input v-model="regForm.confirmPassword" class="inputs-main" type="password" placeholder="Повторите пароль" />
       <Button name="register_tab" type="submit" />
     </form>
     <div class="form-reg__registration">
@@ -29,10 +29,10 @@ export default {
   setup(props, context) {
 
     const regForm = reactive({
+      name: "",
       email: "",
       city: "",
-      password: "",
-      confirmPassword: "",
+      password: ""
     });
 
     const typeForm = ref();

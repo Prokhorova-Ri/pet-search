@@ -8,6 +8,9 @@
           <Button @click="changeModalAutherizaytion" :class="button.className" class="header-registration">
             {{ button.name }}
           </Button>
+<!--          <div class="header-user-menu">-->
+<!--            <img src="@/assets/image/universal/none-avatar-user.png" alt="Аватрка пустая">-->
+<!--          </div>-->
         </div>
       </div>
     </div>
@@ -93,6 +96,15 @@ export default {
   &-img {
     max-width: 40px;
     margin-right: 20px;
+  }
+  &-user {
+    &-menu {
+      & > img {
+        width: 36px;
+        height: 36px;
+        cursor: pointer;
+      }
+    }
   }
 }
 </style>
