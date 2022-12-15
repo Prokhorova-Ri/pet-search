@@ -5,9 +5,9 @@
         <img class="header-img" src="/src/assets/image/logo.png" alt="logo" />
         <h4>ПОИСК ПРОПАВШИХ ЖИВОТНЫХ</h4>
         <div class="header-right">
-          <Button @click="changeModalAutherizaytion" :class="button.className" class="header-registration">
+          <button @click="changeModalAutherizaytion" :class="button.className" class="header-registration">
             {{ button.name }}
-          </Button>
+          </button>
 <!--          <div class="header-user-menu">-->
 <!--            <img src="@/assets/image/universal/none-avatar-user.png" alt="Аватрка пустая">-->
 <!--          </div>-->
