@@ -1,19 +1,23 @@
 <template>
   <div class="container">
     JSON Документация: <br><br>
-    <pre>{{doc}}</pre>
+    <pre>{{ document }}</pre>
   </div>
 </template>
 
 <script>
-import { useDocumentation } from "../store/doc";
-import {computed, ref} from 'vue'
+import { computed } from 'vue'
+import useDoc from "../../src/api/useDoc.js";
 export default {
   name: "doc",
   setup () {
-    const store = useDocumentation()
-    store?.getDocumentation()
-    return { doc: computed(() => store?.getPageDoc )}
+
+    const { getDocumentation, result } = useDoc()
+    getDocumentation('doc', 'get')
+
+    return {
+      document: computed(() => result)
+    }
   }
 }
 </script>

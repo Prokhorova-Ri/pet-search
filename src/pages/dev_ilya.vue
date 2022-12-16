@@ -14,6 +14,8 @@ export default {
     SearchWrapper
   },
   setup () {
+    const privateEnvVar = import.meta.env.VITE_APP_ENV_HOST_SITE;
+    console.warn('process.env.VUE_APP_SITE_HOST', privateEnvVar)
     const store = useCounterStore()
     return { store }
   }
