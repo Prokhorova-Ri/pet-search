@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory } from "vue-router";
 
 import Home from "./pages/Home.vue";
+import Profile from "./pages/Profile.vue";
 import dev_ilya from "./pages/dev_ilya.vue";
 import doc from "./pages/doc.vue";
 
@@ -10,7 +11,14 @@ const router = createRouter({
       {
         path: "/",
         name: "Home",
+        meta: { layout: 'main-layout' },
         component: Home,
+      },
+      {
+        path: "/profile",
+        name: "Profile",
+        meta: { layout: 'profile-layout' },
+        component: Profile,
       },
       //Временная страница для разработки компонентов
       {
