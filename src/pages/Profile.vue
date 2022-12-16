@@ -128,7 +128,7 @@ export default {
   }
   &-wrapper {
     position: relative;
-    @include gridContainer(repeat(auto-fit, minmax(480px, 1fr)));
+    @include gridContainer(repeat(auto-fit, minmax(350px, 1fr)));
     grid-template-rows: repeat(2, 1fr);
     gap: 30px;
     min-height: 750px;
