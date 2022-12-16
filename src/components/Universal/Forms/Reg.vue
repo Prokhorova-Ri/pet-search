@@ -22,11 +22,15 @@ import { computed, ref, reactive } from "vue";
 import InputSelected from "../../../components/Universal/Input/Selected.vue";
 import Button from "../../../components/Universal/Button.vue";
 import { useConfigSite } from "../../../store/config";
+import axios from "axios";
+import useRegistration from "../../../api/useRegistration";
 export default {
   name: "Reg",
   components: { Button, InputSelected },
   emits: ["getButtonCode"],
   setup(props, context) {
+
+    const { setNewUser } = useRegistration()
 
     const regForm = reactive({
       name: "",
@@ -44,8 +48,8 @@ export default {
       context.emit("getButtonCode", code);
     };
 
-    const sendValueFormReg = () => {
-      //TODO API REG FORM
+    const sendValueFormReg = async () => {
+      await setNewUser('user', 'create', regForm)
       clearAllValues()
     }
     const clearAllValues = () => {

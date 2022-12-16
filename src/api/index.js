@@ -2,8 +2,7 @@ const siteHost = import.meta.env.VITE_APP_ENV_HOST_SITE ? import.meta.env.VITE_A
 
 const dictApi = {
     doc: `${siteHost}/api/documentation`,
-    auth: `${siteHost}/api/user/auth`,
-    create: `${siteHost}/api/user/create`
+    user: `${siteHost}/api/user`
 }
 
 export const getApiUrl = (key) => {
