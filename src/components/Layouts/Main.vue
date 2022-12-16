@@ -9,9 +9,9 @@
             <button @click="changeModalAutherizaytion" :class="button.className" class="header-registration">
               {{ button.name }}
             </button>
-            <!--          <div class="header-user-menu">-->
-            <!--            <img src="@/assets/image/universal/none-avatar-user.png" alt="Аватрка пустая">-->
-            <!--          </div>-->
+            <router-link to="/profile">
+              Личный кабинет
+            </router-link>
           </div>
         </div>
       </div>
