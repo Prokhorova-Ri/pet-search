@@ -8,12 +8,10 @@
 
 
 <script>
-import VHeader from  "@/components/VHeader.vue"
 import { computed } from "vue";
 import { useRoute } from 'vue-router';
 export default {
   name: 'App',
-  components: { VHeader },
   setup () {
     const route = useRoute()
     return {

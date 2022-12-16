@@ -128,10 +128,13 @@ export default {
   }
   &-wrapper {
     position: relative;
-    @include gridContainer(repeat(auto-fit, minmax(350px, 1fr)));
+    @include gridContainer(repeat(auto-fit, minmax(550px, 1fr)));
     grid-template-rows: repeat(2, 1fr);
     gap: 30px;
     min-height: 750px;
+    @media screen and (max-width: 1200px) {
+      @include gridContainer(repeat(auto-fit, minmax(270px, 1fr)));
+    }
   }
   &-props {
     position: absolute;

@@ -13,6 +13,8 @@
         },
       }"
       :modules="modules"
+      @swiper="onSwiper"
+      @slideChange="changeSlide"
       class="mySwiper"
     >
       <swiper-slide v-for="(index) in 3" :key="index">
@@ -23,8 +25,14 @@
       </swiper-slide>
     </swiper>
     <div class="slider-navigation">
-      <Button name="prev" />
-      <Button name="next" />
+      <Button
+          v-if="!buttons.isBeginning"
+          name="prev"
+          @clickOnButton="prevSlide" />
+      <Button
+          v-if="!buttons.isEnd"
+          name="next"
+          @clickOnButton="nextSlide" />
     </div>
   </div>
 </template>
@@ -36,7 +44,7 @@ import "swiper/css/effect-creative";
 
 import { EffectCreative } from "swiper";
 import Button from "../../components/Universal/Button.vue";
-
+import { ref, reactive } from 'vue'
 export default {
   name: "index",
   props: {
@@ -51,8 +59,41 @@ export default {
     Button
   },
   setup() {
+    const swiper = ref()
+    const buttons = reactive({
+      isBeginning: false,
+      isEnd: false
+    })
+
+    const onSwiper = ($swiper) => {
+      swiper.value = $swiper;
+      setActiveBtnSlide()
+    }
+
+    const nextSlide = () => {
+      swiper.value.slideNext();
+    }
+
+    const prevSlide = () => {
+      swiper.value.slidePrev();
+    }
+
+    const changeSlide = () => {
+      setActiveBtnSlide()
+    }
+
+    const setActiveBtnSlide = () => {
+      buttons.isEnd = swiper.value.isEnd;
+      buttons.isBeginning = swiper.value.isBeginning;
+    }
+
     return {
       modules: [EffectCreative],
+      onSwiper,
+      nextSlide,
+      prevSlide,
+      changeSlide,
+      buttons,
     };
   },
 };
