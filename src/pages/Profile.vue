@@ -16,12 +16,16 @@
             class="profile-props"
             :class="schemaItem.active"
         >
+          <div class="profile-card-close" @click.stop="cancelExitProfile">
+            <img src="/src/assets/image/universal/arrow-left.svg" alt="Стрелка влево">
+            <p>cвернуть</p>
+          </div>
           <template v-if="schemaItem.code === 'exit'">
             <div class="profile-card-exit">
-              <p class="profile-card-exit-title">Вы уверечны что хотите выйти?</p>
+              <p class="profile-card-exit-title">Вы уверены что хотите выйти?</p>
               <div class="profile-card-exit-btns">
-                <button>Да</button>
-                <button @click="cancelExitProfile">Нет</button>
+                <button class="profile-card-exit-yes">Да</button>
+                <button class="profile-card-exit-no" @click="cancelExitProfile">Нет</button>
               </div>
             </div>
           </template>
@@ -56,10 +60,17 @@ export default {
       { active: 'active-exit', code: 'exit', title: 'Выход' }
     ])
 
+    const animatesClose = reactive({
+      cards: 'deactive-cards',
+      add: 'deactive-add',
+      settings: 'deactive-settings',
+      exit: 'deactive-exit'
+    })
+
     const block = ref()
 
     const clickOnBlock = (schema) => {
-      const { item, index } = schema
+      const { item } = schema
       for (const key in item) {
         if (key === 'title') return
         schemaItem[key] = item[key]
@@ -67,10 +78,12 @@ export default {
     }
 
     const cancelExitProfile = () => {
-      for (const key in schemaItem) {
-        schemaItem[key] = ''
-      }
-      console.warn('schemaItem', schemaItem)
+      schemaItem['active'] = animatesClose[schemaItem.code]
+      setTimeout(() => {
+        for (const key in schemaItem) {
+          schemaItem[key] = ''
+        }
+      }, 400)
     }
 
     return { block, blockData, schemaItem, cancelExitProfile, clickOnBlock }
@@ -88,12 +101,51 @@ export default {
       @include flexContainer(column, center, center);
       width: 100%;
       height: 100%;
-      animation-duration: 1s;
-      animation-name: fadeIn;
+      &-btns {
+        @include flexContainer(row, center, center);
+        gap: 10px;
+        width: 100%;
+      }
       &-title {
         display: inline-flex;
-        @include fontFamily($font-family-manrope-500, 20px);
+        @include fontFamily($font-family-manrope-500, 26px);
         margin: 0 0 30px 0;
+      }
+      &-yes {
+        @include button(15px 0, $fff, 1px solid $black, $border-radius-10);
+        @include fontFamily($font-family-manrope-600, 18px);
+        width: 24%;
+        transition: all 0.6s;
+        &:hover {
+          background: $red;
+          color: white;
+          transition: all 0.6s;
+          border: 1px solid $red;
+        }
+      }
+      &-no {
+        @include button(15px 0, $fff, 1px solid $ginger, $border-radius-10);
+        @include fontFamily($font-family-manrope-600, 18px);
+        width: 24%;
+        transition: all 0.6s;
+        &:hover {
+          background: $ginger;
+          color: white;
+          border: 1px solid $ginger;
+        }
+      }
+    }
+    &-close {
+      @include flexContainer(row, flex-start, center);
+      margin: 0 0 20px 0;
+      gap: 10px;
+      cursor: pointer;
+      & > img {
+        width: 15px;
+        height: 15px;
+      }
+      & > p {
+        @include fontFamily($font-family-manrope-500, 18px);
       }
     }
     &-wrapper {
@@ -104,8 +156,6 @@ export default {
       height: 100%;
       overflow: auto;
       padding-right: 20px;
-      animation-duration: 1s;
-      animation-name: fadeIn;
       /* полоса прокрутки (скроллбар) */
       &::-webkit-scrollbar {
         width: 4px; /* ширина для вертикального скролла */
@@ -172,8 +222,9 @@ export default {
     position: absolute;
     width: 100%;
     height: 100%;
-    background-color: white;
-    animation-duration: 0.8s;
+    opacity: 1;
+    background-color: $fff;
+    animation-duration: 1s;
     animation-name: slideRight;
     -webkit-box-shadow: -2px 14px 30px -4px rgba(34, 60, 80, 0.2);
     -moz-box-shadow: -2px 14px 30px -4px rgba(34, 60, 80, 0.2);
@@ -197,24 +248,56 @@ export default {
   }
 }
 
+.deactive {
+  &-settings, &-cards, &-add, &-exit {
+    position: absolute;
+    background-color: $fff;
+    animation-duration: 1s;
+    animation-name: closeCard;
+  }
+  &-cards {
+    left: 0;
+    top: 0;
+  }
+  &-add {
+    right: 0;
+    top: 0;
+  }
+  &-settings {
+    left: 0;
+    bottom: 0;
+  }
+  &-exit {
+    bottom: 0;
+    right: 0;
+  }
+}
+
 @keyframes slideRight {
   from {
     width: 0;
     height: 0;
-  }
-
-  to {
-    width: 100%;
-    height: 100%;
-  }
-}
-@keyframes fadeIn {
-  from {
     opacity: 0;
   }
 
   to {
+    width: 100%;
+    height:100%;
     opacity: 1;
+  }
+}
+
+
+@keyframes closeCard  {
+  from {
+    width: 100%;
+    height: 100%;
+    opacity: 1;
+  }
+  to {
+    width: 0;
+    height: 0;
+    opacity: 0;
   }
 }
 
