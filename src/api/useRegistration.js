@@ -6,7 +6,7 @@ export default function() {
     const loading = ref(false)
     const result = ref({})
 
-    const setNewUser = async ($url, $api, $data) => {
+    const createNewUser = async ($url, $api, $data) => {
         const url = getFullApi($url, $api)
         loading.value = true
         await axios.post(url, $data)
@@ -19,5 +19,5 @@ export default function() {
                 console.error('setNewUser', error)
             })
     }
-    return { setNewUser, result, loading }
+    return { createNewUser, result, loading }
 }

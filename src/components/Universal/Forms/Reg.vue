@@ -22,7 +22,7 @@ import { computed, ref, reactive } from "vue";
 import InputSelected from "../../../components/Universal/Input/Selected.vue";
 import Button from "../../../components/Universal/Button.vue";
 import { useConfigSite } from "../../../store/config";
-import axios from "axios";
+
 import useRegistration from "../../../api/useRegistration";
 export default {
   name: "Reg",
@@ -30,7 +30,7 @@ export default {
   emits: ["getButtonCode"],
   setup(props, context) {
 
-    const { setNewUser } = useRegistration()
+    const { createNewUser } = useRegistration()
 
     const regForm = reactive({
       name: "",
@@ -49,7 +49,7 @@ export default {
     };
 
     const sendValueFormReg = async () => {
-      await setNewUser('user', 'create', regForm)
+      await createNewUser('user', 'create', regForm)
       clearAllValues()
     }
     const clearAllValues = () => {

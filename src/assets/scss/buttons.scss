@@ -109,7 +109,7 @@
   &-prev, &-next {
     width: 30px;
     height: 30px;
-    @include button(0, $fff, 1px solid $black, $border-radius-50);
+    @include button(0, rgba(255,255,255, 0.8), none, $border-radius-50);
     @include flexContainer(row, center, center);
     & > img {
       width: 13px;

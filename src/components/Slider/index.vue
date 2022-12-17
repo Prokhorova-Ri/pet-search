@@ -25,14 +25,18 @@
       </swiper-slide>
     </swiper>
     <div class="slider-navigation">
-      <Button
-          v-if="!buttons.isBeginning"
-          name="prev"
-          @clickOnButton="prevSlide" />
-      <Button
-          v-if="!buttons.isEnd"
-          name="next"
-          @clickOnButton="nextSlide" />
+      <div>
+        <Button
+            v-if="!buttons.isBeginning"
+            name="prev"
+            @clickOnButton="prevSlide" />
+      </div>
+      <div>
+        <Button
+            v-if="!buttons.isEnd"
+            name="next"
+            @clickOnButton="nextSlide" />
+      </div>
     </div>
   </div>
 </template>
@@ -114,6 +118,10 @@ export default {
     right: 10px;
     bottom: 10px;
     z-index: 99;
+    & > div {
+      width: 30px;
+      height: 30px;
+    }
   }
 }
 
