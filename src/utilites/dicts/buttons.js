@@ -74,6 +74,16 @@ const buttons = {
         name: '',
         code: 'next',
         className: 'btn-navigation-next'
+    },
+    exit: {
+        name: 'Да',
+        code: 'exit',
+        className: 'btn-profile-exit'
+    },
+    cancel: {
+        name: 'Нет',
+        code: 'cancel',
+        className: 'btn-profile-cancel'
     }
 }
 

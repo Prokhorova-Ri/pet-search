@@ -24,8 +24,9 @@
             <div class="profile-card-exit">
               <p class="profile-card-exit-title">Вы уверены что хотите выйти?</p>
               <div class="profile-card-exit-btns">
-                <button class="profile-card-exit-yes">Да</button>
-                <button class="profile-card-exit-no" @click="cancelExitProfile">Нет</button>
+<!--                TODO BUTTON -->
+                <Button name="exit"/>
+                <Button @clickOnButton="cancelExitProfile" name="cancel"/>
               </div>
             </div>
           </template>
@@ -43,9 +44,10 @@
 <script>
 import { reactive, ref } from 'vue'
 import MainCard from "@/components/Universal/Cards/MainCard.vue";
+import Button from "../components/Universal/Button.vue";
 export default {
   name: "profile",
-  components: { MainCard },
+  components: { Button, MainCard },
   setup () {
 
     const schemaItem = reactive({

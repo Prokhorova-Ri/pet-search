@@ -122,3 +122,29 @@
     }
   }
 }
+
+.btn-profile {
+  &-exit {
+    @include button(15px 0, $fff, 1px solid $black, $border-radius-10);
+    @include fontFamily($font-family-manrope-600, 18px);
+    width: 24%;
+    transition: all 0.6s;
+    &:hover {
+      background: $red;
+      color: white;
+      transition: all 0.6s;
+      border: 1px solid $red;
+    }
+  }
+  &-cancel {
+    @include button(15px 0, $fff, 1px solid $ginger, $border-radius-10);
+    @include fontFamily($font-family-manrope-600, 18px);
+    width: 24%;
+    transition: all 0.6s;
+    &:hover {
+      background: $ginger;
+      color: white;
+      border: 1px solid $ginger;
+    }
+  }
+}
