@@ -30,3 +30,10 @@ button, a {
 .leaflet-top, .leaflet-bottom {
   z-index: 900!important;
 }
+
+.Vue-Toastification__toast-body {
+  color: $fff;
+}
+.svg-inline--fa .fa-check-circle .fa-w-16 .Vue-Toastification__icon {
+  color: $fff
+}

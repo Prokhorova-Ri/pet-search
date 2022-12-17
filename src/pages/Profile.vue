@@ -32,7 +32,7 @@
           </template>
           <template v-if="schemaItem.code === 'cards'">
             <div class="profile-card-wrapper">
-              <MainCard v-for="(index) in 20" :key="index" :index="index" />
+              <MainCard v-for="(index) in 2" :key="index" :index="index" />
             </div>
           </template>
         </div>

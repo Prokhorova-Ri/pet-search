@@ -1,5 +1,6 @@
 <template>
   <div class="form-reg">
+    {{errors}}
     <h2 class="form-reg__title">Зарегистрироваться</h2>
     <form @submit.prevent="sendValueFormReg" class="form-reg__layout">
       <input v-model="regForm.name" class="inputs-main" type="text" placeholder="Как вас зовут?" />
@@ -23,7 +24,6 @@ import { computed, ref, reactive } from "vue";
 import InputSelected from "../../../components/Universal/Input/Selected.vue";
 import Button from "../../../components/Universal/Button.vue";
 import { useConfigSite } from "../../../store/config";
-import { useSetResultInfo } from "../../../store/setResultInfo";
 import useRegistration from "../../../api/useRegistration";
 
 export default {
@@ -32,7 +32,7 @@ export default {
   emits: ["getButtonCode"],
   setup(props, context) {
 
-    const { createNewUser, result } = useRegistration()
+    const { result, errors, createNewUser } = useRegistration()
 
     const regForm = reactive({
       name: "",
@@ -44,7 +44,6 @@ export default {
     const typeForm = ref();
 
     const store = useConfigSite()
-    const infoResult = useSetResultInfo()
 
     const changeForm = (code) => {
       typeForm.value = code;
@@ -53,12 +52,11 @@ export default {
 
     const sendValueFormReg = async () => {
       await createNewUser('user', 'create', regForm)
-      const { status, data } = result.value
+      const { status } = result.value
       if (status === 200) {
-        context.emit("getButtonCode", "auth");
+        context.emit("getButtonCode", 'auth');
+        clearAllValues()
       }
-      infoResult.setResultInfo(data.data.info)
-      clearAllValues()
     }
     const clearAllValues = () => {
       for (const key in regForm) {
@@ -70,6 +68,7 @@ export default {
       isAuthForm: computed(() => {
         return typeForm.value === "reg";
       }),
+      errors,
       regForm,
       changeForm,
       sendValueFormReg,

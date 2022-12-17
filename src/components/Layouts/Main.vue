@@ -36,7 +36,7 @@ import AuthForm from "@/components/Universal/Forms/Auth.vue";
 import RegForm from "@/components/Universal/Forms/Reg.vue";
 import { computed, ref } from "vue";
 import { getButton } from "../../utilites/dicts/buttons.js";
-import { useSetResultInfo } from "../../store/setResultInfo";
+import { useSetResultInfo } from "../../store/setResultInfoToast";
 
 export default {
   name: "VHeader",
