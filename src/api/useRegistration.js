@@ -11,7 +11,7 @@ export default function() {
         loading.value = true
         await axios.post(url, $data)
             .then((data) => {
-                result.value = data?.data
+                result.value = data
                 loading.value = false
             })
             .catch((error) => {

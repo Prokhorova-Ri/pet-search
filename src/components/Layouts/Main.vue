@@ -30,25 +30,30 @@
 </template>
 
 <script>
+
 import WrapperModal from "@/components/Universal/WrapperModal.vue";
 import AuthForm from "@/components/Universal/Forms/Auth.vue";
 import RegForm from "@/components/Universal/Forms/Reg.vue";
 import { computed, ref } from "vue";
 import { getButton } from "../../utilites/dicts/buttons.js";
+import { useSetResultInfo } from "../../store/setResultInfo";
+
 export default {
   name: "VHeader",
   components: { WrapperModal, AuthForm, RegForm },
   setup() {
     const buttonCode = ref();
+    const button = ref();
     const activeModal = ref(false);
+    button.value = getButton("auth");
+    const resultInfo = useSetResultInfo()
+    const { getResultInfo } = resultInfo
+
     const changeModalAutherizaytion = (status) => {
       status ? (activeModal.value = true) : (activeModal.value = status);
     };
-    const button = ref();
-    button.value = getButton("auth");
 
     const changeTypeForm = (code) => {
-      console.log('changeTypeForm', code);
       buttonCode.value = code;
     }
 
@@ -57,6 +62,7 @@ export default {
         return buttonCode.value === "reg_tab";
       }),
       activeModal,
+      getResultInfo,
       changeModalAutherizaytion,
       button,
       changeTypeForm

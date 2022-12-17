@@ -1,13 +1,11 @@
 <template>
   <div class="container">
-    {{store}}
     <SearchWrapper />
   </div>
 </template>
 
 <script>
 import SearchWrapper from '@/components/SearchWrapper/index.vue'
-import { useCounterStore } from '../store/counter'
 export default {
   name: "dev_ilya",
   components: {
@@ -16,8 +14,7 @@ export default {
   setup () {
     const privateEnvVar = import.meta.env.VITE_APP_ENV_HOST_SITE;
     console.warn('process.env.VUE_APP_SITE_HOST', privateEnvVar)
-    const store = useCounterStore()
-    return { store }
+    return { }
   }
 }
 </script>

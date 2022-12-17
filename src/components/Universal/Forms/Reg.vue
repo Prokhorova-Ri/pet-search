@@ -18,19 +18,21 @@
 </template>
 
 <script>
+
 import { computed, ref, reactive } from "vue";
 import InputSelected from "../../../components/Universal/Input/Selected.vue";
 import Button from "../../../components/Universal/Button.vue";
 import { useConfigSite } from "../../../store/config";
-
+import { useSetResultInfo } from "../../../store/setResultInfo";
 import useRegistration from "../../../api/useRegistration";
+
 export default {
   name: "Reg",
   components: { Button, InputSelected },
   emits: ["getButtonCode"],
   setup(props, context) {
 
-    const { createNewUser } = useRegistration()
+    const { createNewUser, result } = useRegistration()
 
     const regForm = reactive({
       name: "",
@@ -42,6 +44,7 @@ export default {
     const typeForm = ref();
 
     const store = useConfigSite()
+    const infoResult = useSetResultInfo()
 
     const changeForm = (code) => {
       typeForm.value = code;
@@ -50,6 +53,11 @@ export default {
 
     const sendValueFormReg = async () => {
       await createNewUser('user', 'create', regForm)
+      const { status, data } = result.value
+      if (status === 200) {
+        context.emit("getButtonCode", "auth");
+      }
+      infoResult.setResultInfo(data.data.info)
       clearAllValues()
     }
     const clearAllValues = () => {
