@@ -1,6 +1,10 @@
 <template>
   <div class="input-selected-layout">
-    <div ref="selected" class="input-selected" :style="`width: ${ width }`">
+    <div ref="selected"
+         class="input-selected"
+         :style="`width: ${ width }`"
+         :class="errors ? 'errors-input' : ''"
+    >
       <input
           class="input-selected-input"
           type="text"
@@ -34,6 +38,10 @@ export default {
     width: {
       type: String,
       default: '100%'
+    },
+    errors: {
+      type: String,
+      default: ''
     }
   },
   emits: ['updateSelectCity'],
@@ -72,7 +80,7 @@ export default {
   position: relative;
   padding: 0 0 0 11px;
   transition: all .6s;
-  width: 80%;
+  width: 100%;
   margin: 0 auto;
   &:hover {
     border: 1px solid $ginger;

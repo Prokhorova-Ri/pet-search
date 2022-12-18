@@ -1,14 +1,53 @@
 <template>
   <div class="form-reg">
-    {{errors}}
     <h2 class="form-reg__title">Зарегистрироваться</h2>
     <form @submit.prevent="sendValueFormReg" class="form-reg__layout">
-      <input v-model="regForm.name" class="inputs-main" type="text" placeholder="Как вас зовут?" />
-      <input v-model="regForm.email" class="inputs-main" type="text" placeholder="Email" />
+      <input
+          v-model="regForm.name"
+          class="inputs-main"
+          type="text"
+          placeholder="Как вас зовут?"
+          :class="errors.name ? 'errors-input' : ''"
+      />
+      <p
+          v-if="errors.name"
+          class="errors-text">
+        * {{ errors.name }}
+      </p>
+      <input
+          v-model="regForm.email"
+          class="inputs-main"
+          type="text"
+          placeholder="Email"
+          :class="errors.name ? 'errors-input' : ''"
+      />
+      <p  v-if="errors.email"
+          class="errors-text">
+        * {{ errors.email }}
+      </p>
       <div style="margin: 0 0 15px 0">
-        <InputSelected @updateSelectCity="(payload) => regForm.city = payload" :items="city" width="80%"/>
+        <InputSelected
+            :items="city"
+            width="100%"
+            :errors="errors.city"
+            @updateSelectCity="(payload) => regForm.city = payload"
+        />
       </div>
-      <input v-model="regForm.password" class="inputs-main" type="password" placeholder="Пароль" />
+      <p  v-if="errors.city"
+          class="errors-text">
+        * {{ errors.city }}
+      </p>
+      <input
+          v-model="regForm.password"
+          class="inputs-main"
+          type="password"
+          placeholder="Пароль"
+          :class="errors.name ? 'errors-input' : ''"
+      />
+      <p  v-if="errors.password"
+          class="errors-text">
+        * {{ errors.password }}
+      </p>
       <Button name="register_tab" type="submit" />
     </form>
     <div class="form-reg__registration">
@@ -94,7 +133,7 @@ export default {
   }
   &__input {
   margin-top: 20px;
-  width: 80%;
+  width: 100%;
   padding: 20px;
   color: #b6b6b6;
   font-size: 14px;
