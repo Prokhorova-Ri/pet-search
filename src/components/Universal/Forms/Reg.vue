@@ -9,11 +9,7 @@
           placeholder="Как вас зовут?"
           :class="errors.name ? 'errors-input' : ''"
       />
-      <p
-          v-if="errors.name"
-          class="errors-text">
-        * {{ errors.name }}
-      </p>
+      <ErrorLayout :error="errors.name" />
       <input
           v-model="regForm.email"
           class="inputs-main"
@@ -21,10 +17,7 @@
           placeholder="Email"
           :class="errors.name ? 'errors-input' : ''"
       />
-      <p  v-if="errors.email"
-          class="errors-text">
-        * {{ errors.email }}
-      </p>
+      <ErrorLayout :error="errors.email" />
       <div style="margin: 0 0 15px 0">
         <InputSelected
             :items="city"
@@ -33,21 +26,15 @@
             @updateSelectCity="(payload) => regForm.city = payload"
         />
       </div>
-      <p  v-if="errors.city"
-          class="errors-text">
-        * {{ errors.city }}
-      </p>
+      <ErrorLayout :error="errors.city" />
       <input
           v-model="regForm.password"
           class="inputs-main"
           type="password"
           placeholder="Пароль"
-          :class="errors.name ? 'errors-input' : ''"
+          :class="errors.password ? 'errors-input' : ''"
       />
-      <p  v-if="errors.password"
-          class="errors-text">
-        * {{ errors.password }}
-      </p>
+      <ErrorLayout :error="errors.password" />
       <Button name="register_tab" type="submit" />
     </form>
     <div class="form-reg__registration">

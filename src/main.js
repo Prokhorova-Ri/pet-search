@@ -12,6 +12,7 @@ import "vue-toastification/dist/index.css";
 
 import MaintLayout from "../src/components/Layouts/Main.vue";
 import Profile from "../src/components/Layouts/Profile.vue";
+import Error from  "../src/components/Universal/InterfaceError/index.vue"
 
 const pinia = createPinia()
 
@@ -39,6 +40,7 @@ createApp(App)
     .use(Toast, options)
     .component("main-layout", MaintLayout)
     .component("profile-layout", Profile)
+    .component("ErrorLayout", Error)
     .use(VueAxios, axios)
     .mount("#app")
 
