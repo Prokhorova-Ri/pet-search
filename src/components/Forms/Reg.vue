@@ -35,7 +35,7 @@
           :class="errors.password ? 'errors-input' : ''"
       />
       <ErrorLayout :error="errors.password" />
-      <Button name="register_tab" type="submit" />
+      <Button :loader="loading" name="register_tab" type="submit" />
     </form>
     <div class="form-reg__registration">
       <h5 class="form-reg__reg">{{!isAuthForm ? "ЕСТЬ АККАУНТ?" : "Зарегистрировать аккаунт" }}</h5>
@@ -66,7 +66,7 @@ export default {
   setup(props, context) {
 
     const infoResult = useSetResultInfo()
-    const { result, errors, createNewUser } = useRegistration()
+    const { result, loading, errors, createNewUser } = useRegistration()
 
     const regForm = reactive({
       name: "",
@@ -113,8 +113,9 @@ export default {
       isAuthForm: computed(() => {
         return typeForm.value === "reg";
       }),
-      errors,
+      loading,
       regForm,
+      errors,
       changeForm,
       sendValueFormReg,
     };
