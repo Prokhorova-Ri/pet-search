@@ -24,6 +24,8 @@ export default function() {
                 loading.value = false
             })
     }
+
+    console.warn('getNewSchemaErrors', getNewSchemaErrors)
     return {
         result,
         loading,

@@ -16,6 +16,8 @@ export const useSetResultInfo = defineStore('setResultInfo', {
                     toast.success(data.data.info)
                 }
             } else {
+                // При перзапросе на бэкенд очичаем поля
+                this.deletelValueErrors()
                 const { status, data } = newResultInfo
                 if (status === 400) {
                     toast.error(data.info)
@@ -25,14 +27,21 @@ export const useSetResultInfo = defineStore('setResultInfo', {
         },
 
         setNewSchemaErrors (errors) {
+            console.warn('errors', errors)
             // Пересобириаем с бэкенда Array и создаем новый обьект
             for (const key in errors) {
                 this.errors[errors[key].param] = errors[key].msg
             }
             console.warn('NewSchemaErros', this.errors)
-        }
+        },
 
+        deletelValueErrors () {
+            for (const key in this.errors) {
+                delete this.errors[key]
+            }
+        }
     },
+
     getters: {
         getNewSchemaErrors (state) {
             return state.errors || {}
