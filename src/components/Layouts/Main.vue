@@ -22,8 +22,8 @@
     </section>
     <WrapperModal :active="activeModal" @closeModal="changeModalAutherizaytion">
       <template #form>
-        <AuthForm v-if="!isAuthForm" @getButtonCode="changeTypeForm" />
-        <RegForm v-else  @getButtonCode="changeTypeForm" />
+        <AuthForm v-if="!isAuthForm" :active="activeModal" @getButtonCode="changeTypeForm" />
+        <RegForm v-else :active="activeModal"  @getButtonCode="changeTypeForm" />
       </template>
     </WrapperModal>
   </div>
@@ -32,8 +32,8 @@
 <script>
 
 import WrapperModal from "@/components/Universal/WrapperModal.vue";
-import AuthForm from "@/components/Universal/Forms/Auth.vue";
-import RegForm from "@/components/Universal/Forms/Reg.vue";
+import AuthForm from "@/components/Forms/Auth.vue";
+import RegForm from "@/components/Forms/Reg.vue";
 import { computed, ref } from "vue";
 import { getButton } from "../../utilites/dicts/buttons.js";
 import { useSetResultInfo } from "../../store/setResultInfoToast";
@@ -56,6 +56,7 @@ export default {
     const changeTypeForm = (code) => {
       buttonCode.value = code;
     }
+
 
     return {
       isAuthForm: computed(() => {

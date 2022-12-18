@@ -17,24 +17,16 @@
     <section class="content">
       <slot />
     </section>
-    <WrapperModal :active="activeModal" @closeModal="changeModalAutherizaytion">
-      <template #form>
-        <AuthForm v-if="!isAuthForm" @getButtonCode="changeTypeForm" />
-        <RegForm v-else  @getButtonCode="changeTypeForm" />
-      </template>
-    </WrapperModal>
   </div>
 </template>
 
 <script>
 import WrapperModal from "@/components/Universal/WrapperModal.vue";
-import AuthForm from "@/components/Universal/Forms/Auth.vue";
-import RegForm from "@/components/Universal/Forms/Reg.vue";
 import { computed, ref } from "vue";
 import { getButton } from "../../utilites/dicts/buttons.js";
 export default {
   name: "VHeader",
-  components: { WrapperModal, AuthForm, RegForm },
+  components: { WrapperModal },
   setup() {
     const buttonCode = ref();
     const activeModal = ref(false);

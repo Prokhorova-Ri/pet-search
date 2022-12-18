@@ -46,18 +46,26 @@
 
 <script>
 
-import { computed, ref, reactive } from "vue";
-import InputSelected from "../../../components/Universal/Input/Selected.vue";
-import Button from "../../../components/Universal/Button.vue";
-import { useConfigSite } from "../../../store/config";
-import useRegistration from "../../../api/useRegistration";
+import {computed, ref, reactive, watch } from "vue";
+import InputSelected from "../Universal/Input/Selected.vue";
+import Button from "../Universal/Button.vue";
+import { useConfigSite } from "../../store/config";
+import useRegistration from "../../api/useRegistration";
+import {useSetResultInfo} from "../../store/setResultInfoToast";
 
 export default {
   name: "Reg",
   components: { Button, InputSelected },
   emits: ["getButtonCode"],
+  props: {
+    active: {
+      type: Boolean,
+      default: false
+    }
+  },
   setup(props, context) {
 
+    const infoResult = useSetResultInfo()
     const { result, errors, createNewUser } = useRegistration()
 
     const regForm = reactive({
@@ -84,11 +92,22 @@ export default {
         clearAllValues()
       }
     }
+
     const clearAllValues = () => {
       for (const key in regForm) {
         regForm[key] = ""
       }
     }
+
+    watch(() => props.active, (newValue) => {
+      if (!newValue) {
+        context.emit("getButtonCode", 'auth');
+        infoResult.deleteValueErrors()
+        clearAllValues()
+      }
+    })
+
+
     return {
       city: computed(() => store?.getConfigSite?.city),
       isAuthForm: computed(() => {
@@ -105,12 +124,12 @@ export default {
 
 <style lang="scss" scoped>
 
-@import "./src/assets/scss/utilities/mixins";
-@import "./src/assets/scss/utilities/variables";
+@import "../../assets/scss/utilities/mixins";
+@import "../../assets/scss/utilities/variables";
 .form-reg {
   background: $fff;
   text-align: center;
-  padding: 40px 20px;
+  padding: 40px 60px;
   height: 100%;
   box-shadow: 7px 7px 10px $grey;
   border-radius: 20px;

@@ -3,8 +3,18 @@
     <div>
       <h2 class="form-auth__title">Авторизация</h2>
       <form @submit.prevent="sendValueFormAuth" class="form-auth__layout">
-        <input v-model="authForm.email" class="inputs-main" type="text" placeholder="Email" />
-        <input v-model="authForm.password" class="inputs-main" type="password" placeholder="Пароль" />
+        <input
+            v-model="authForm.email"
+            class="inputs-main"
+            type="text"
+            placeholder="Email"
+        />
+        <input
+            v-model="authForm.password"
+            class="inputs-main"
+            type="password"
+            placeholder="Пароль"
+        />
         <Button name="enter_tab" select="submit" />
       </form>
     </div>
@@ -16,15 +26,23 @@
 </template>
 
 <script>
-import { computed, ref, reactive } from "vue";
-import Button from "../../../components/Universal/Button.vue";
+import { computed, ref, reactive, watch } from "vue";
+import Button from "../Universal/Button.vue";
+import { useSetResultInfo } from "../../store/setResultInfoToast";
 export default {
   name: "Auth",
   components: {
     Button,
   },
+  props: {
+    active: {
+      type: Boolean,
+      default: false
+    }
+  },
   emits: ["getButtonCode"],
   setup(props, context) {
+    const infoResult = useSetResultInfo()
     const typeForm = ref();
     const authForm = reactive({
       email: "",
@@ -45,6 +63,14 @@ export default {
       for (const key in authForm) { authForm[key] = "" }
     }
 
+    watch(() => props.active, (newValue) => {
+      if (!newValue) {
+        infoResult.deleteValueErrors()
+        clearValueAuth()
+      }
+    })
+
+
     return {
       isAuthForm: computed(() => {
         return typeForm.value === "reg";
@@ -59,14 +85,14 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import "./src/assets/scss/utilities/mixins";
-@import "./src/assets/scss/utilities/variables";
+@import "../../assets/scss/utilities/mixins";
+@import "../../assets/scss/utilities/variables";
 
 .form-auth {
   @include flexContainer(column, space-between, center);
   background: $fff;
   text-align: center;
-  padding: 60px 10px;
+  padding: 40px 60px;
   height: 100%;
   border-radius: 20px;
   box-shadow: 7px 7px 10px $grey;

@@ -25,7 +25,6 @@ export default function() {
             })
     }
 
-    console.warn('getNewSchemaErrors', getNewSchemaErrors)
     return {
         result,
         loading,
