@@ -90,7 +90,7 @@ export default {
   }
   &-input {
     @include fontFamily($font-family-manrope-600, 14px, $black);
-    width: 100%;
+    width: 95%;
     height: 56px;
     &:focus {
       outline: none;

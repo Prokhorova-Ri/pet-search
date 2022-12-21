@@ -3,7 +3,7 @@
     <h2 class="form-reg__title">Зарегистрироваться</h2>
     <form @submit.prevent="sendValueFormReg" class="form-reg__layout">
       <input
-          v-model="regForm.name"
+          v-model.trim="regForm.name"
           class="inputs-main"
           type="text"
           placeholder="Как вас зовут?"
@@ -11,7 +11,7 @@
       />
       <ErrorLayout :error="errors.name" />
       <input
-          v-model="regForm.email"
+          v-model.trim="regForm.email"
           class="inputs-main"
           type="text"
           placeholder="Email"
@@ -28,7 +28,7 @@
       </div>
       <ErrorLayout :error="errors.city" />
       <input
-          v-model="regForm.password"
+          v-model.trim="regForm.password"
           class="inputs-main"
           type="password"
           placeholder="Пароль"

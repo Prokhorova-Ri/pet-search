@@ -65,7 +65,7 @@ export default {
   justify-content: space-between;
   height: 80px;
   padding: 20px 0;
-  margin: 0 0 40px 0;
+  //margin: 0 0 40px 0;
   border-bottom: 1px solid #000000;
   &-request,
   &-request2,

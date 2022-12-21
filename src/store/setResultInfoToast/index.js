@@ -13,10 +13,10 @@ export const useSetResultInfo = defineStore('setResultInfo', {
             if (success) {
                 const { status, data } = newResultInfo.value
                 if (status === 200) {
-                    toast.success(data.data.info)
+                    toast.success(data.info)
                 }
             } else {
-                // При перзапросе на бэкенд очичаем поля
+                // При запросе на бэкенд очищаем поля NewSchemaErrors
                 this.deleteValueErrors()
                 const { status, data } = newResultInfo
                 if (status === 400) {

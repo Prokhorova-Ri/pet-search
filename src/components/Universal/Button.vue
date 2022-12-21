@@ -1,6 +1,6 @@
 <template>
   <button
-    :type="type"
+    :type="select"
     :class="button.className"
     @click="clickButton(button.code)"
     >
@@ -30,7 +30,7 @@ export default {
       required: true,
       default: ''
     },
-    type: {
+    select: {
       type: String,
       default: 'button'
     },

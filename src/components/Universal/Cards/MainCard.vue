@@ -80,9 +80,8 @@ export default {
   min-height: 470px;
   position: relative;
   perspective: 1000px;
-  width: 350px;
   max-width: 350px;
-  min-width: 90%;
+  min-width: 95%;
   &-block {
     text-align: center;
     padding: 10px;

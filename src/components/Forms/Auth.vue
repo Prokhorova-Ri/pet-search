@@ -29,6 +29,7 @@
 import { computed, ref, reactive, watch } from "vue";
 import Button from "../Universal/Button.vue";
 import { useSetResultInfo } from "../../store/setResultInfoToast";
+import useRegistration from "../../api/useRegistration";
 export default {
   name: "Auth",
   components: {
@@ -44,10 +45,13 @@ export default {
   setup(props, context) {
     const infoResult = useSetResultInfo()
     const typeForm = ref();
+
     const authForm = reactive({
       email: "",
       password: "",
     });
+
+    const { result, loading, errors, authUser } = useRegistration()
 
     const changeForm = (code) => {
       typeForm.value = code;
@@ -55,7 +59,7 @@ export default {
     };
 
     const sendValueFormAuth = () => {
-      console.log("sendValueFormAuth", authForm)
+      authUser('user', 'auth', authForm)
       clearValueAuth()
     }
 

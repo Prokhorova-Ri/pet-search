@@ -25,10 +25,27 @@ export default function() {
             })
     }
 
+    const authUser = async ($url, $api, $data) => {
+        console.warn('authUser:', $url, $api, $data)
+        const urlAuth = getFullApi($url, $api)
+        loading.value = true
+        await axios.post(urlAuth, $data)
+            .then((data) => {
+                result.value = data || 'Успех'
+                loading.value = false
+                setResultInfo(true, result)
+            })
+            .catch((error) => {
+                setResultInfo(false, error.response)
+                loading.value = false
+            })
+    }
+
     return {
         result,
         loading,
         errors: computed(() => getNewSchemaErrors) || {},
-        createNewUser
+        createNewUser,
+        authUser
     }
 }

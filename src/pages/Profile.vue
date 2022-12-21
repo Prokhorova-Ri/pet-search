@@ -32,7 +32,7 @@
           </template>
           <template v-if="schemaItem.code === 'cards'">
             <div class="profile-card-wrapper">
-              <MainCard v-for="(index) in 2" :key="index" :index="index" />
+              <MainCard v-for="(index) in 20" :key="index" :index="index" />
             </div>
           </template>
         </div>
@@ -98,6 +98,10 @@ export default {
 @import "../assets/scss/utilities/variables";
 
 .profile {
+  display: flex;
+  align-items: center;
+  min-height: calc(100vh - 150px);
+  margin: 0 0 30px 0;
   &-card {
     &-exit {
       @include flexContainer(column, center, center);
@@ -112,6 +116,7 @@ export default {
         display: inline-flex;
         @include fontFamily($font-family-manrope-500, 26px);
         margin: 0 0 30px 0;
+        text-align: center;
       }
       &-yes {
         @include button(15px 0, $fff, 1px solid $black, $border-radius-10);
@@ -151,13 +156,16 @@ export default {
       }
     }
     &-wrapper {
-      @include gridContainer(repeat(auto-fit, minmax(340px, 1fr)));
+      @include gridContainer(repeat(auto-fill, minmax(320px, 23%)));
+      justify-content: space-between;
       column-gap: 20px;
-      row-gap: 35px;
+      row-gap: 45px;
       width: 100%;
-      height: 100%;
+      height: 97%;
       overflow: auto;
-      padding-right: 20px;
+      padding: 0 20px 30px 0;
+      //padding-right: 20px;
+      //padding-bottom: 30px;
       /* полоса прокрутки (скроллбар) */
       &::-webkit-scrollbar {
         width: 4px; /* ширина для вертикального скролла */
@@ -183,8 +191,9 @@ export default {
     @include gridContainer(repeat(auto-fit, minmax(550px, 1fr)));
     grid-template-rows: repeat(2, 1fr);
     gap: 30px;
-    min-height: 750px;
+    min-height: 850px;
     @media screen and (max-width: 1200px) {
+      margin: 30px 0 0 0;
       @include gridContainer(repeat(auto-fit, minmax(270px, 1fr)));
     }
   }
