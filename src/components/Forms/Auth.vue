@@ -47,8 +47,8 @@ export default {
     const typeForm = ref();
 
     const authForm = reactive({
-      email: "",
-      password: "",
+      email: "coolbiird@gmail.com",
+      password: "123456",
     });
 
     const { result, loading, errors, authUser } = useRegistration()
@@ -60,7 +60,7 @@ export default {
 
     const sendValueFormAuth = () => {
       authUser('user', 'auth', authForm)
-      clearValueAuth()
+      // clearValueAuth()
     }
 
     const clearValueAuth = () => {
