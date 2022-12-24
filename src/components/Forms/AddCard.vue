@@ -79,15 +79,17 @@ export default {
     const imageBlock = ref()
 
     const setLocalImage = (ev) => {
-      images.value = [...images.value, ...getLoadFile(ev)]
+      console.warn('images.value.length', images.value.length)
+      if (images.value.length === 0) {
+        images.value = [...images.value, ...getLoadFile(ev)]
+      } else if (images.value.length < 5) {
+        images.value = [...images.value, ...getLoadFile(ev)]
+      } else {
+        return console.warn('Не больше +++ 5!')
+      }
     }
     const deleteLocalImage = (id) => {
-      // document.querySelector(`#image-${id}`).remove()
-      deleteLoadFile({ images: images.value, id })
-      images.value = [...images.value, ...deleteLoadFile({ images: images.value, id })]
-      console.warn('images.value', images.value.length)
-      console.warn('images.value', images.value)
-
+      images.value = deleteLoadFile({ images: images.value, id })
     }
 
     return {

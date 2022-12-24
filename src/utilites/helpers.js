@@ -14,7 +14,8 @@ const getUuid = (a = '') => {
 
 export const getLoadFile = function(event) {
     let localImages = []
-    if (event.target.files.length > 0) {
+    console.warn('event.target.files.length', event.target.files.length)
+    if (event.target.files.length < 6) {
         [...event.target.files].forEach(file => {
             let id = getUuid()
             const typeFile = file.type.substr(file.type.lastIndexOf('.') + 1)
@@ -33,18 +34,20 @@ export const getLoadFile = function(event) {
                 }
             }
         })
+    } else {
+        console.warn('Не больше 5!')
     }
     return localImages
 }// Удаление локальных изображений
 
 export const deleteLoadFile = function(payload) {
     const { images, id } = payload
-    let newListImage = images.map((image, index) => {
+    let newListImage = []
+    images.forEach((image, index) => {
         if (image.id.includes(id)) {
-            console.warn('id', index)
-            return images.slice(index, 1)
+            images.splice(index, 1)
         }
     })
-
+    newListImage = [...newListImage, ...images]
     return newListImage
 }
