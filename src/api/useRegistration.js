@@ -2,13 +2,14 @@ import { getFullApi } from "./index";
 import { DeafaultAPIInstance } from './AxiosConfig'
 import { computed, reactive, ref } from 'vue'
 import { useSetResultInfo } from "../store/setResultInfoToast";
+import { useRouter } from "vue-router";
 
 export default function() {
 
     const user = reactive({
         token: localStorage.getItem('token') ||  null
     })
-
+    const router = useRouter()
     const loading = ref(false)
     const infoResult = useSetResultInfo()
     const { setResultInfo, getNewSchemaErrors } = infoResult
@@ -39,14 +40,14 @@ export default function() {
         loading.value = true
         await DeafaultAPIInstance.post(urlAuth, $data)
             .then(({ data }) => {
-                console.warn('data', data)
                 result.value = data || 'Успех'
                 loading.value = false
                 setResultInfo(true, result)
                 setToken(data?.token)
-                DeafaultAPIInstance.interceptors.request.use(function (config) {
-                    config.headers['authorization'] = `Bearer ${ data?.token }`
-                })
+                // DeafaultAPIInstance.interceptors.request.use(function (config) {
+                //     config.headers['authorization'] = `Bearer ${ data?.token }`
+                // })
+                router.push('/profile')
             })
             .catch((error) => {
                 setResultInfo(false, error.response)

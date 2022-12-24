@@ -40,7 +40,7 @@
       color: $fff;
     }
   }
-  &-search {
+  &-search, &-add_card {
     @include fontFamily($font-family-manrope-600, 16px, $fff);
     width: 100%;
     background: $ginger;
@@ -52,6 +52,9 @@
       color: $black;
       border: 1px solid $ginger;
     }
+  }
+  &-add_card {
+    margin-top: 20px;
   }
   &-more {
     @include fontFamily($font-family-manrope-600, 16px, $black);

@@ -60,6 +60,11 @@ const buttons = {
         code: 'search',
         className: 'btn-search'
     },
+    add_card: {
+        name: 'Создать обьявления',
+        code: 'add_card',
+        className: 'btn-add_card'
+    },
     more: {
         name: 'Загрузить еще',
         code: 'more',

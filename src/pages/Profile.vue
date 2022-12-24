@@ -35,6 +35,11 @@
               <MainCard v-for="(index) in 20" :key="index" :index="index" />
             </div>
           </template>
+          <template v-if="schemaItem.code === 'add'">
+            <div class="profile-add-wrapper">
+              <AddCard />
+            </div>
+          </template>
         </div>
       </div>
     </div>
@@ -42,12 +47,14 @@
 </template>
 
 <script>
-import { reactive, ref } from 'vue'
+import {onMounted, reactive, ref} from 'vue'
 import MainCard from "@/components/Universal/Cards/MainCard.vue";
 import Button from "../components/Universal/Button.vue";
+import axios from "axios";
+import AddCard from "../components/Forms/AddCard.vue";
 export default {
   name: "profile",
-  components: { Button, MainCard },
+  components: {AddCard, Button, MainCard },
   setup () {
 
     const schemaItem = reactive({
@@ -87,6 +94,15 @@ export default {
         }
       }, 400)
     }
+
+    onMounted(() => {
+      console.warn('sadasdsa')
+      axios.get('http://localhost:3000/api/profile').then((data) => {
+        console.warn('data', data)
+      }).catch((error) => {
+        console.warn(error)
+      })
+    })
 
     return { block, blockData, schemaItem, cancelExitProfile, clickOnBlock }
   }
@@ -160,6 +176,34 @@ export default {
       justify-content: space-between;
       column-gap: 20px;
       row-gap: 45px;
+      width: 100%;
+      height: 97%;
+      overflow: auto;
+      padding: 0 20px 30px 0;
+      //padding-right: 20px;
+      //padding-bottom: 30px;
+      /* полоса прокрутки (скроллбар) */
+      &::-webkit-scrollbar {
+        width: 4px; /* ширина для вертикального скролла */
+        height: 2px; /* высота для горизонтального скролла */
+        background-color: $fff;
+        border-radius: 5px;
+      }
+
+      /* ползунок скроллбара */
+      &::-webkit-scrollbar-thumb {
+        background-color:  $ginger;
+        border-radius: 9em;
+        box-shadow: inset 1px 1px 10px #f3faf7;
+      }
+
+      &::-webkit-scrollbar-thumb:hover {
+        background-color: #253861;
+      }
+    }
+  }
+  &-add {
+    &-wrapper {
       width: 100%;
       height: 97%;
       overflow: auto;

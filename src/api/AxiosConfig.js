@@ -10,6 +10,14 @@ const defaultConfig = {
 }
 
 const token = localStorage.getItem('token')
-if (token) defaultConfig.headers['authorization'] = `Bearer ${token}`
+
+if (token) {
+    axios.interceptors.request.use(function (config) {
+        config.headers = {
+            ...config.headers,
+            authorization:  `Bearer ${ token }`
+        }
+    })
+}
 
 export const DeafaultAPIInstance = axios.create(defaultConfig)
