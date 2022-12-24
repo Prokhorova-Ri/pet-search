@@ -17,22 +17,26 @@
       <button class="add_ads-geo-add">Поделиться геолокацией</button>
     </div>
 
-    <p class="add_ads-subtitle">КОГО ВЫ ИЩЕТЕ</p>
-    <InputCheckBoxRadio :items="who" name="main" />
-
-    <p class="add_ads-subtitle">ТИП ОБЪЯВЛЕНИЯ</p>
-    <InputSelected :items="type" id="type" />
-
-    <Button name="add_card" />
-<!--    TODO отдельный компонент-->
+    <p class="add_ads-subtitle">ЗАГРУЗИТЕ ФОТОГРАФИИ</p>
+    <!--    TODO отдельный компонент-->
     <div class="input__wrapper">
-      <input name="file" type="file" id="input__file" class="input input__file" multiple>
+      <input @change="getLoadFile({ ev: $event, id: 'preview-card' })" name="file" type="file" id="input__file" class="input input__file" multiple>
       <label for="input__file" class="input__file-button">
         <span class="input__file-icon-wrapper">
           <img class="input__file-icon" src="/src/assets/image/input/icons/add.svg" alt="Выбрать файл" width="25"></span>
         <span class="input__file-button-text">Выберите файл</span>
       </label>
     </div>
+<!--   ОТТОБРАЖАЕМ КАРТИНКУ С INPUT -->
+    <div class="preview-image-wrapper" id="preview-card" />
+
+    <p class="add_ads-subtitle">КОГО ВЫ ИЩЕТЕ</p>
+    <InputCheckBoxRadio :items="who" name="main" />
+
+    <p class="add_ads-subtitle">ТИП ОБЪЯВЛЕНИЯ</p>
+    <InputSelected :items="type" id="type" />
+    <!--    TODO отдельный компонент-->
+    <Button name="add_card" />
   </form>
 </div>
 </template>
@@ -44,6 +48,7 @@ import InputSelected from "../Universal/Input/Selected.vue";
 import { useConfigSite } from "../../store/config";
 import { computed } from "vue";
 import Button from "../Universal/Button.vue";
+import { getLoadFile } from '../../utilites/helpers.js'
 export default {
   name: "AddCard",
   components: {
@@ -57,6 +62,7 @@ export default {
       city: computed(() => store?.getConfigSite?.city),
       type: computed(() => store?.getConfigSite?.type_ads),
       who: computed(() => store?.getConfigSite?.who_search),
+      getLoadFile
     }
   }
 }
@@ -90,7 +96,17 @@ export default {
   }
 }
 
-// стили для отдельного инпута
+.preview-card-image {
+  max-width: 200px;
+  max-height: 200px;
+  object-fit: cover;
+}
+.preview-image-wrapper {
+  @include flexContainer(row, flex-start, cneter);
+  gap: 20px;
+}
+
+// стили для инпута загрузки фотографии
 
 .input__wrapper {
   width: 100%;
@@ -106,44 +122,29 @@ export default {
 }
 
 .input__file-icon-wrapper {
+  @include flexContainer(row, center, center);
   height: 60px;
   width: 60px;
   margin-right: 15px;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  -webkit-box-pack: center;
-  -ms-flex-pack: center;
-  justify-content: center;
   border-right: 1px solid #fff;
 }
 
 .input__file-button-text {
   line-height: 1;
   margin-top: 1px;
+  @include fontFamily($font-family-manrope-600, 16px, $fff);
 }
 
 .input__file-button {
+  @include flexContainer(row, flex-start, center);
   width: 100%;
-  max-width: 290px;
+  //max-width: 290px;
   height: 60px;
-  background: #1bbc9b;
-  color: #fff;
+  background:  $ginger;
+  color: $fff;
   font-size: 1.125rem;
   font-weight: 700;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  -webkit-box-pack: start;
-  -ms-flex-pack: start;
-  justify-content: flex-start;
-  border-radius: 3px;
+  border-radius: 10px;
   cursor: pointer;
   margin: 0 auto;
 }
