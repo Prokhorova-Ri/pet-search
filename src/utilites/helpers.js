@@ -1,23 +1,50 @@
+// UUID
+
+const getUuid = (a = '') => {
+    return (
+        a
+            /* eslint-disable no-bitwise */
+            ? ((Number(a) ^ Math.random() * 16) >> Number(a) / 4).toString(16)
+            : (`${1e7}-${1e3}-${4e3}-${8e3}-${1e11}`).replace(/[018]/g, getUuid)
+    );
+}
+
 
 // Получение фотографий с input и преобразование в image
 
-export const getLoadFile = function(payload) {
-    const { ev, id } = payload
-    const images = ev.target.files
-    console.warn('images', images.length)
-    if (!images) return;
-    if (images.length > 5) return console.error('Максимум 5 фотографий');
-    [...images].forEach((image) => {
-        const fr = new FileReader();
-        fr.onload = () => {
-            const img = document.createElement("img");
-            img.src = fr.result;  // String Base64
-            img.alt = image.name;
-            img.className = `${ id }-image`
-            const idElement = document.querySelector(`${ id }`)
-            idElement ? idElement.append(img) : console.error('getLoadFile', `Такой id - ${ id } для шаблона картинки не найден`)
-            document.querySelector(`#${ id }`).append(img);
-        };
-        fr.readAsDataURL(image);
+export const getLoadFile = function(event) {
+    let localImages = []
+    if (event.target.files.length > 0) {
+        [...event.target.files].forEach(file => {
+            let id = getUuid()
+            const typeFile = file.type.substr(file.type.lastIndexOf('.') + 1)
+            if (typeFile.includes('image')) {
+                const linkImg = window.URL.createObjectURL(file)
+                if (file.size >= 20000000) {
+                    localImages.push({ name: file.name, preview: linkImg, type: 'image', error: true, id: id })
+                } else {
+                    localImages.push({ name: file.name, preview: linkImg, type: 'image', id: id })
+                }
+            } else {
+                if (file.size >= 20000000) {
+                    localImages.push({ name: file.name, type: 'any', error: true, id: id })
+                } else {
+                    localImages.push({ name: file.name, type: 'any', id: id })
+                }
+            }
+        })
+    }
+    return localImages
+}// Удаление локальных изображений
+
+export const deleteLoadFile = function(payload) {
+    const { images, id } = payload
+    let newListImage = images.map((image, index) => {
+        if (image.id.includes(id)) {
+            console.warn('id', index)
+            return images.slice(index, 1)
+        }
     })
+
+    return newListImage
 }
