@@ -12,22 +12,30 @@
     />
     <div class="add_ads-geo-wrapper">
       <InputText
+          class-style="add_ads-input-geo"
           placeholder="Местонахождение"
       />
-      <button class="add_ads-geo-add">Поделиться геолокацией</button>
+      <p>или</p>
+      <button
+          class="add_ads-geo-add"
+          type="button"
+          @click="getGeoLocation"
+      >
+        <span>Поделиться геолокацией</span>
+      </button>
+    </div>
+    <div class="add_ads-map">
+      <Map
+          border-radius="1.25rem"
+          :coordinates="localCoordinates.length > 0 ? localCoordinates : [55.796127, 49.106414]"
+          :zoom="11"
+          id="add-map-card"
+      />
     </div>
 
     <p class="add_ads-subtitle">ЗАГРУЗИТЕ ФОТОГРАФИИ</p>
-    <!--    TODO отдельный компонент-->
-    <div class="input__wrapper">
-      <input @change="setLocalImage($event)" name="file" type="file" id="input__file" class="input input__file" multiple>
-      <label for="input__file" class="input__file-button">
-        <span class="input__file-icon-wrapper">
-          <img class="input__file-icon" src="/src/assets/image/input/icons/add.svg" alt="Выбрать файл" width="25"></span>
-        <span class="input__file-button-text">Выберите файл</span>
-      </label>
-    </div>
-<!--   ОТТОБРАЖАЕМ КАРТИНКУ С INPUT -->
+
+    <!--   ОТТОБРАЖАЕМ КАРТИНКУ С INPUT -->
     <div class="preview-image-wrapper">
       <div
           class="preview-image-block"
@@ -47,13 +55,23 @@
         >Удалить</button>
       </div>
     </div>
+    <!--    TODO отдельный компонент-->
+    <div class="input__wrapper">
+      <input @change="setLocalImage($event)" name="file" type="file" id="input__file" class="input input__file" multiple>
+      <label for="input__file" class="input__file-button">
+        <span class="input__file-icon-wrapper">
+          <img class="input__file-icon" src="/src/assets/image/input/icons/add.svg" alt="Выбрать файл" width="25"></span>
+        <span class="input__file-button-text">Выберите файл</span>
+      </label>
+    </div>
+
     <p class="add_ads-subtitle">КОГО ВЫ ИЩЕТЕ</p>
     <InputCheckBoxRadio :items="who" name="main" />
 
     <p class="add_ads-subtitle">ТИП ОБЪЯВЛЕНИЯ</p>
     <InputSelected :items="type" id="type" />
     <!--    TODO отдельный компонент-->
-    <Button name="add_card" />
+    <Button name="add_card" select="submit" />
   </form>
 </div>
 </template>
@@ -63,43 +81,67 @@ import InputText from "../Universal/Input/InputText.vue";
 import InputCheckBoxRadio from "../Universal/Input/CheckBoxRadio.vue";
 import InputSelected from "../Universal/Input/Selected.vue";
 import { useConfigSite } from "../../store/config";
-import { computed, nextTick, ref } from "vue";
+import { computed, reactive, ref } from "vue";
 import Button from "../Universal/Button.vue";
-import { deleteLoadFile, getLoadFile } from '../../utilites/helpers.js'
+import { deleteLoadFile, getLoadFile, setInfoToast } from '../../utilites/helpers.js'
+import Map from '../../components/Map/index.vue'
 export default {
   name: "AddCard",
   components: {
-    Button,
+    Button, Map,
     InputText, InputCheckBoxRadio, InputSelected,
   },
 
   setup () {
     const store = useConfigSite()
     let images = ref([])
+    let localCoord = ref([])
+    let coords = reactive({
+      lat: 0,
+      lon: 0
+    })
     const imageBlock = ref()
 
+    // TODO PROXY WTF???
     const setLocalImage = (ev) => {
       console.warn('images.value.length', images.value.length)
-      if (images.value.length === 0) {
+      if (images.value.length <= 4) {
+        console.warn('images.value.length <= 4', images.value.length)
         images.value = [...images.value, ...getLoadFile(ev)]
-      } else if (images.value.length < 5) {
-        images.value = [...images.value, ...getLoadFile(ev)]
-      } else {
-        return console.warn('Не больше +++ 5!')
+        console.warn('images.value', images.value)
+      }  else {
+        setInfoToast("error", "Можно загрузить не более 5 фотографий!!!!!!!!!!!!!");
       }
     }
+
     const deleteLocalImage = (id) => {
       images.value = deleteLoadFile({ images: images.value, id })
+      console.warn('deleteLocalImage', images.value)
     }
+
+    const getGeoLocation = () => {
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(position => {
+          coords.lat = position?.coords?.latitude
+          coords.lon = position?.coords?.longitude
+          localCoord.value.push(position?.coords?.latitude, position?.coords?.longitude)
+        })
+      }
+    }
+
 
     return {
       city: computed(() => store?.getConfigSite?.city),
       type: computed(() => store?.getConfigSite?.type_ads),
       who: computed(() => store?.getConfigSite?.who_search),
       localImages: computed(() => { return images.value }),
+      localCoordinates: computed(() => { return localCoord.value }),
+      imageBlock,
+      coords,
+      localCoord,
       setLocalImage,
       deleteLocalImage,
-      imageBlock
+      getGeoLocation,
     }
   }
 }
@@ -118,18 +160,48 @@ export default {
    }
   &-input {
     @include fontFamily($font-family-manrope-600, 14px, $g-9D9B95);
+    &-geo {
+      margin: 0!important;
+    }
   }
   &-subtitle {
     @include fontFamily($font-family-manrope-600, 16px, $black);
     margin: 15px 0;
   }
+  &-map {
+    width: 100%;
+    height: 300px;
+  }
   &-geo {
     &-wrapper {
-      @include flexContainer(row, space-between, center);
+      @include gridContainer(60% 4% auto);
+      align-items: center;
       gap: 20px;
+      margin: 0 0 10px 0;
+      & > p {
+        @include fontFamily($font-family-manrope-600, 16px, $black);
+        display: flex;
+        justify-content: center;
+      }
     }
     &-add {
       display: flex;
+      align-self: stretch;
+      justify-content: center;
+      border-radius: 10px;
+      transition: all 0.6s;
+      &:hover {
+        background: $ginger;
+        & > span {
+          color: white;
+        }
+      }
+      & > span {
+        display: flex;
+        align-self: center;
+        transition: all 0.6s;
+        @include fontFamily($font-family-manrope-600, 16px, $black);
+      }
     }
   }
 }

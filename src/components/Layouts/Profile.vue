@@ -3,7 +3,9 @@
     <header class="header">
       <div class="container">
         <div class="header-wrapper">
-          <img class="header-img" src="/src/assets/image/logo.png" alt="logo" />
+          <router-link to="/">
+            <img class="header-img" src="/src/assets/image/logo.png" alt="logo" />
+          </router-link>
           <h4>Личный кабинет</h4>
           <div class="header-right">
             <div class="header-user-menu">

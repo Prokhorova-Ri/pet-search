@@ -43,9 +43,9 @@ export default {
     }
 
     return {
-      city: computed(() => store?.getConfigSite?.city),
-      type: computed(() => store?.getConfigSite?.type_ads),
-      who: computed(() => store?.getConfigSite?.who_search),
+      city: computed(() => store?.getConfigSite?.city || []),
+      type: computed(() => store?.getConfigSite?.type_ads || []),
+      who: computed(() => store?.getConfigSite?.who_search || []),
       valueFilterForm,
       sendValueFilter,
     }

@@ -5,7 +5,7 @@
 <script>
 import "leaflet/dist/leaflet.css";
 import L from "leaflet";
-import { onMounted, onBeforeUnmount, ref } from 'vue'
+import {onMounted, onBeforeUnmount, ref, watch} from 'vue'
 export default {
   name: "index",
   props: {
@@ -18,8 +18,8 @@ export default {
       default: ''
     },
     coordinates: {
-      type: Array,
-      default: () => [59.892315, 30.470127]
+      type: [Array, Object],
+      default: () => [55.796127, 49.106414]
     },
     zoom: {
       type: Number,
@@ -39,7 +39,9 @@ export default {
     }
 
     onMounted(() => {
-      setParamsMap()
+      setTimeout(() => {
+        setParamsMap()
+      }, 1000)
     })
 
     onBeforeUnmount(() => {
@@ -48,14 +50,22 @@ export default {
       }
     })
 
+    watch(() => props.coordinates, (newValue) => {
+      map.value.remove();
+      setParamsMap()
+    })
+
     return { map }
   }
 }
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
   .map-container {
-    width: inherit;
-    height: inherit;
+    width: 100%;
+    height: 100%;
+    & > * {
+      width: inherit;
+    }
   }
 </style>

@@ -1,5 +1,8 @@
 // UUID
+import { useToast } from 'vue-toastification'
+const toast = useToast()
 
+//warning
 const getUuid = (a = '') => {
     return (
         a
@@ -15,7 +18,7 @@ const getUuid = (a = '') => {
 export const getLoadFile = function(event) {
     let localImages = []
     console.warn('event.target.files.length', event.target.files.length)
-    if (event.target.files.length < 6) {
+    if (event.target.files.length <= 5) {
         [...event.target.files].forEach(file => {
             let id = getUuid()
             const typeFile = file.type.substr(file.type.lastIndexOf('.') + 1)
@@ -35,10 +38,12 @@ export const getLoadFile = function(event) {
             }
         })
     } else {
-        console.warn('Не больше 5!')
+        setInfoToast("error", "Можно загрузить не более 5 фотографий ============")
     }
     return localImages
-}// Удаление локальных изображений
+}
+
+// Удаление локальных изображений
 
 export const deleteLoadFile = function(payload) {
     const { images, id } = payload
@@ -50,4 +55,11 @@ export const deleteLoadFile = function(payload) {
     })
     newListImage = [...newListImage, ...images]
     return newListImage
+}
+
+
+export const setInfoToast = (type, text) => {
+    if (type === "error") {
+        toast.error(text);
+    }
 }

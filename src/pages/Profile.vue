@@ -47,7 +47,7 @@
 </template>
 
 <script>
-import {onMounted, reactive, ref} from 'vue'
+import {onBeforeUnmount, onMounted, reactive, ref} from 'vue'
 import MainCard from "@/components/Universal/Cards/MainCard.vue";
 import Button from "../components/Universal/Button.vue";
 import axios from "axios";
@@ -95,13 +95,24 @@ export default {
       }, 400)
     }
 
+    const addEventListenerClick = (ev) => {
+      if (ev.target.classList.contains('profile') || ev.target.classList.contains('header-wrapper')) {
+        cancelExitProfile()
+      }
+    }
+
+    const addEventListenerButtons = (ev) => {
+      if (ev.keyCode === 27) cancelExitProfile()
+    }
+
     onMounted(() => {
-      console.warn('sadasdsa')
-      axios.get('http://localhost:3000/api/profile').then((data) => {
-        console.warn('data', data)
-      }).catch((error) => {
-        console.warn(error)
-      })
+      document.addEventListener("click", (e) => addEventListenerClick(e));
+      document.addEventListener("keydown", (e) => addEventListenerButtons(e));
+    })
+
+    onBeforeUnmount(() => {
+      document.removeEventListener("click", (e) => addEventListenerClick(e));
+      document.removeEventListener("keydown", (e) => addEventListenerButtons(e));
     })
 
     return { block, blockData, schemaItem, cancelExitProfile, clickOnBlock }
