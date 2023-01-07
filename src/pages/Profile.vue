@@ -40,6 +40,11 @@
               <AddCard />
             </div>
           </template>
+          <template v-if="schemaItem.code === 'settings'">
+            <div class="profile-setting-wrapper">
+              <AddSettings />
+            </div>
+          </template>
         </div>
       </div>
     </div>
@@ -52,9 +57,10 @@ import MainCard from "@/components/Universal/Cards/MainCard.vue";
 import Button from "../components/Universal/Button.vue";
 import axios from "axios";
 import AddCard from "../components/Forms/AddCard.vue";
+import AddSettings from "../components/Forms/AddSettings.vue";
 export default {
   name: "profile",
-  components: {AddCard, Button, MainCard },
+  components: {AddSettings, AddCard, Button, MainCard },
   setup () {
 
     const schemaItem = reactive({
