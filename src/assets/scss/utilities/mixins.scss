@@ -1,0 +1,44 @@
+/* EXAMPLE:
+
+@import './src/assets/scss/utilities/mixins';
+
+@mixin flexContainer($direction, $justify, $align) {
+  display: flex;
+  flex-direction: $direction;
+  justify-content: $justify;
+  align-items: $align;
+}
+.Main-container {
+  @include flexContainer(column, center, center);
+}
+*/
+
+@import './src/assets/scss/utilities/variables';
+
+@mixin flexContainer($direction, $justify, $align) {
+  display: flex;
+  flex-direction: $direction;
+  justify-content: $justify;
+  align-items: $align;
+}
+
+@mixin gridContainer($columns) {
+  display: grid;
+  grid-template-columns: $columns;
+}
+
+@mixin button($padding, $background, $border: 1px solid transparent, $radius: 0) {
+  padding: $padding;
+  background-color: $background;
+  border: $border;
+  border-radius: $radius;
+}
+
+@mixin fontFamily($font: $font-family-manrope-main, $size, $color: $black, $height: 120%, $space: normal) {
+  font-family: $font;
+  font-size: $size;
+  color: $color;
+  line-height: $height;
+  letter-spacing: $space;
+}
+

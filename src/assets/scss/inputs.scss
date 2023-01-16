@@ -1,0 +1,17 @@
+@import './utilities/mixins.scss';
+@import './utilities/variables';
+
+.inputs {
+  &-main {
+    width: 100%;
+    padding: 20px 24px;
+    border: 1px solid $g-7c848f;
+    border-radius: $border-radius-10;
+    margin: 0 0 10px 0;
+    &:focus {
+      border: 1px solid $ginger;
+      outline: 1px solid $ginger;
+      transition: outline 0.5s;
+    }
+  }
+}

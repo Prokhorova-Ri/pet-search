@@ -1,0 +1,89 @@
+//.container {
+//  min-width: 992px!important
+//}
+
+.container {
+  width: 100%;
+  margin: 0 auto;
+}
+
+@media screen and (max-width: 575px) and (min-width: 280px) {
+  .container {
+    max-width: 90%;
+  }
+}
+
+@media (min-width: 576px) {
+  .container {
+    //max-width: 540px;
+    //  TEST
+    min-width: 95%;
+    max-width:  540px;
+  }
+}
+
+@media (min-width: 768px) {
+  .container {
+    //max-width: 720px;
+    //  TEST
+    min-width: 95%;
+    max-width: 720px;
+  }
+}
+
+@media (min-width: 992px) {
+  .container {
+    //max-width: 960px
+    //  TEST
+    min-width: 95%;
+    max-width: 920px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .container {
+    //max-width: 1140px;
+    //  TEST
+    min-width: 95%;
+    max-width: 920px;
+  }
+}
+
+@media screen and (min-width: 1500px)  {
+  .container {
+    min-width: auto;
+    max-width: 1480px;
+    //max-width: 1680px;
+  }
+}
+
+//@media screen and (min-width: 1600px)  {
+//  .container {
+//    min-width: 95%;
+//  }
+//}
+
+//@media screen and (min-width: 1201px) and (max-width: 2000px) {
+//  .container {
+//    width: 95%;
+//    max-width: 1548px;
+//  }
+//}
+
+.container-fluid {
+  width: 100%;
+  padding-right: 15px;
+  padding-left: 15px;
+  margin-right: auto;
+  margin-left: auto
+}
+// ПЕРЕНЕСТИ FROM PLACEHOLDERS ЗАЧЕМ ?
+.row {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  margin-right: -15px;
+  margin-left: -15px
+}

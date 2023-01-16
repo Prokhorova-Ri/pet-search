@@ -1,0 +1,40 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@300;400&display=swap");
+/*Подключаем BootStrap Container*/
+/* EXAMPLE: class="container" or class="mobile-container"*/
+@import "scss/grid/_container";
+@import "scss/grid/_mobile-container";
+@import "scss/buttons";
+@import "scss/errors";
+@import "scss/inputs";
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  color: #1B1918;
+  border: 0 none;
+}
+
+body {
+  background: #fcf8ed;
+}
+
+main {
+  max-width: 1200px;
+  margin: auto;
+}
+
+button, a {
+  cursor: pointer;
+}
+
+.leaflet-top, .leaflet-bottom {
+  z-index: 900!important;
+}
+
+.Vue-Toastification__toast-body {
+  color: $fff;
+}
+.svg-inline--fa .fa-check-circle .fa-w-16 .Vue-Toastification__icon {
+  color: $fff
+}

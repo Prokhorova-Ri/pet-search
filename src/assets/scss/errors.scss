@@ -1,0 +1,13 @@
+@import './utilities/mixins.scss';
+@import './utilities/variables';
+
+.errors {
+  &-text {
+    @include fontFamily($font-family-manrope-600, 16px, $red);
+    margin: 5px 0 15px 0;
+    text-align: left;
+  }
+  &-input {
+    border: 1px solid $red!important;
+  }
+}

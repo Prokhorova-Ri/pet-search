@@ -1,0 +1,155 @@
+@import './utilities/mixins.scss';
+@import './utilities/variables';
+
+.btn {
+  &-auth {
+    @include button(0 0, transparent, none, 8px);
+    @include fontFamily($font-family-manrope-400, 16px);
+    margin-left: 5px;
+    color: $ginger;
+    text-transform: uppercase;
+    &:hover{
+      text-decoration: underline;
+    }
+  }
+  &-reg {
+    @include button(10px 10px, transparent, none, 8px);
+    @include fontFamily($font-family-manrope-600, 16px, $black);
+    width: 60%;
+  }
+  &-enter {
+    @include button(20px 20px, $fff);
+    width: 60%;
+    @include fontFamily($font-family-manrope-600, 16px, $black);
+    margin-top: 20px;
+  }
+  &-map {
+    @include button(15px 10px, 1px solid $ginger, none);
+    @include fontFamily($font-family-manrope-600, 16px, $black);
+    border-bottom-left-radius: $border-radius-125rem;
+    border-bottom-right-radius: $border-radius-125rem;
+    width: 100%;
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    transition: all 0.6s;
+    z-index: 10000;
+    &:hover {
+      background-color: $ginger;
+      color: $fff;
+    }
+  }
+  &-search, &-add_card {
+    @include fontFamily($font-family-manrope-600, 16px, $fff);
+    width: 100%;
+    background: $ginger;
+    border-radius: $border-radius-10;
+    transition: all 0.6s;
+    min-height: 56px;
+    &:hover {
+      background-color: $fff;
+      color: $black;
+      border: 1px solid $ginger;
+    }
+  }
+  &-add_card {
+    margin-top: 20px;
+  }
+  &-more {
+    @include fontFamily($font-family-manrope-600, 16px, $black);
+    @include button(15px 10px, transparent, 1px solid $ginger, $border-radius-125rem);
+    width: 100%;
+    margin: 60px 0;
+    transition: all .6s;
+    &:hover {
+      background-color: $ginger;
+      color: white;
+    }
+  }
+}
+
+.btn-tab {
+  &-auth {
+    @include fontFamily($font-family-manrope-600, 18px, $ginger, 120%);
+    background: transparent;
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+  &-reg {
+    @include fontFamily($font-family-manrope-600, 18px, $ginger, 120%);
+    background: transparent;
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+  &-enter {
+    @include button(20px 20px, $ginger, 1px solid $ginger, 10px);
+    @include fontFamily($font-family-manrope-600, 18px, $fff);
+    transition: all 0.6s;
+    width: 100%;
+    margin: 20px 0 0 0;
+    &:hover {
+      background-color: $fff;
+      border: 1px solid $ginger;
+      color: $black;
+    }
+  }
+  &-register {
+    @include button(20px 20px, $ginger, 1px solid $ginger, 10px);
+    @include fontFamily($font-family-manrope-600, 18px, $fff);
+    transition: all 0.6s;
+    width: 100%;
+    margin: 20px 0 0 0;
+    &:hover {
+      background-color: $fff;
+      border: 1px solid $ginger;
+      color: $black;
+    }
+  }
+}
+
+.btn-navigation {
+  &-prev, &-next {
+    width: 30px;
+    height: 30px;
+    @include button(0, rgba(255,255,255, 0.8), none, $border-radius-50);
+    @include flexContainer(row, center, center);
+    & > img {
+      width: 13px;
+      height: 13px;
+    }
+  }
+  &-next {
+    & > img {
+      transform: rotate(180deg);
+    }
+  }
+}
+
+.btn-profile {
+  &-exit {
+    @include button(15px 0, $fff, 1px solid $black, $border-radius-10);
+    @include fontFamily($font-family-manrope-600, 18px);
+    width: 24%;
+    transition: all 0.6s;
+    &:hover {
+      background: $red;
+      color: white;
+      transition: all 0.6s;
+      border: 1px solid $red;
+    }
+  }
+  &-cancel {
+    @include button(15px 0, $fff, 1px solid $ginger, $border-radius-10);
+    @include fontFamily($font-family-manrope-600, 18px);
+    width: 24%;
+    transition: all 0.6s;
+    &:hover {
+      background: $ginger;
+      color: white;
+      border: 1px solid $ginger;
+    }
+  }
+}
