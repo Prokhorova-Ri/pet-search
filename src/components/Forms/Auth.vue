@@ -47,8 +47,8 @@ export default {
     const typeForm = ref();
 
     const authForm = reactive({
-      email: "coolbiird@gmail.com",
-      password: "123456",
+      email: "",
+      password: "",
     });
 
     const { result, loading, errors, authUser } = useRegistration()
